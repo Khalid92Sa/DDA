@@ -4,6 +4,7 @@ using DDA.ViewModels.Campaigns;
 using DDA.Web.Helpers;
 using System;
 using System.IO;
+using System.Linq;
 using System.Resources;
 using System.Web;
 using System.Web.Mvc;
@@ -79,7 +80,15 @@ namespace DDA.Web.Controllers
         public ActionResult Spin()
         {
             ViewBag.Title = Resource.Spin;
-            return View(new SpinPageViewModel { Campaigns = _campaignService.GetActiveCampaignsLookup() });
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult Campaigns()
+        {
+            var list = _campaignService.GetActiveCampaignsLookup()
+                .Select(c => new { Value = c.Value, Text = c.Text });
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

@@ -64,13 +64,11 @@ namespace DDA.Business.Repositories
             }
         }
 
-        public List<KeyValuePair<int, int>> GetRemaining(int campaignId)
+        public List<int> GetRemaining(int campaignId)
         {
             return _context.CampaignEntries
-                .Where(e => e.CampaignId == campaignId && !e.IsWithdrawn && e.Chances > 0)
-                .Select(e => new { e.Id, e.Chances })
-                .ToList()
-                .Select(x => new KeyValuePair<int, int>(x.Id, x.Chances))
+                .Where(e => e.CampaignId == campaignId && !e.IsWithdrawn)
+                .Select(e => e.Id)
                 .ToList();
         }
 

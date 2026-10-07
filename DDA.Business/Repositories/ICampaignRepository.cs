@@ -19,7 +19,7 @@ namespace DDA.Business.Repositories
         int InsertEntries(List<CampaignEntry> entries);
 
         /// <summary>Ids + chances of entries that are still not withdrawn (Chances &gt; 0).</summary>
-        List<KeyValuePair<int, int>> GetRemaining(int campaignId);
+        List<int> GetRemaining(int campaignId);   // ids of entries not yet withdrawn
 
         /// <summary>Atomically marks the entry as withdrawn. Returns false if it was already withdrawn.</summary>
         bool TryWithdraw(int entryId);

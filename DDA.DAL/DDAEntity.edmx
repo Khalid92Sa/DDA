@@ -36,7 +36,6 @@
           <Property Name="CampaignId" Type="int" Nullable="false" />
           <Property Name="CIF" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Chances" Type="int" Nullable="false" />
           <Property Name="IsWithdrawn" Type="bit" Nullable="false" />
           <Property Name="WithdrawnOn" Type="datetime" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
@@ -344,8 +343,8 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserGroup" EntitySet="UserGroups" />
           </AssociationSet>
-          <EntitySet Name="CampaignEntries" EntityType="DDA_SITModel.CampaignEntry" />
           <EntitySet Name="Campaigns" EntityType="DDA_SITModel.Campaign" />
+          <EntitySet Name="CampaignEntries" EntityType="DDA_SITModel.CampaignEntry" />
           <AssociationSet Name="FK_CampaignEntries_Campaigns" Association="DDA_SITModel.FK_CampaignEntries_Campaigns">
             <End Role="Campaign" EntitySet="Campaigns" />
             <End Role="CampaignEntry" EntitySet="CampaignEntries" />
@@ -583,21 +582,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CampaignEntry">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CampaignId" Type="Int32" Nullable="false" />
-          <Property Name="CIF" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Chances" Type="Int32" Nullable="false" />
-          <Property Name="IsWithdrawn" Type="Boolean" Nullable="false" />
-          <Property Name="WithdrawnOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Campaign" Relationship="DDA_SITModel.FK_CampaignEntries_Campaigns" FromRole="CampaignEntry" ToRole="Campaign" />
-        </EntityType>
         <EntityType Name="Campaign">
           <Key>
             <PropertyRef Name="Id" />
@@ -610,6 +594,20 @@
           <Property Name="ModifyBy" Type="Int32" />
           <Property Name="ModifyOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="CampaignEntries" Relationship="DDA_SITModel.FK_CampaignEntries_Campaigns" FromRole="Campaign" ToRole="CampaignEntry" />
+        </EntityType>
+        <EntityType Name="CampaignEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignId" Type="Int32" Nullable="false" />
+          <Property Name="CIF" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsWithdrawn" Type="Boolean" Nullable="false" />
+          <Property Name="WithdrawnOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Campaign" Relationship="DDA_SITModel.FK_CampaignEntries_Campaigns" FromRole="CampaignEntry" ToRole="Campaign" />
         </EntityType>
         <Association Name="FK_CampaignEntries_Campaigns">
           <End Type="DDA_SITModel.Campaign" Role="Campaign" Multiplicity="1" />
@@ -787,21 +785,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CampaignEntries">
-            <EntityTypeMapping TypeName="DDA_SITModel.CampaignEntry">
-              <MappingFragment StoreEntitySet="CampaignEntries">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="WithdrawnOn" ColumnName="WithdrawnOn" />
-                <ScalarProperty Name="IsWithdrawn" ColumnName="IsWithdrawn" />
-                <ScalarProperty Name="Chances" ColumnName="Chances" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="CIF" ColumnName="CIF" />
-                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Campaigns">
             <EntityTypeMapping TypeName="DDA_SITModel.Campaign">
               <MappingFragment StoreEntitySet="Campaigns">
@@ -811,6 +794,20 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampaignEntries">
+            <EntityTypeMapping TypeName="DDA_SITModel.CampaignEntry">
+              <MappingFragment StoreEntitySet="CampaignEntries">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="WithdrawnOn" ColumnName="WithdrawnOn" />
+                <ScalarProperty Name="IsWithdrawn" ColumnName="IsWithdrawn" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

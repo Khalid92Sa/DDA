@@ -86,16 +86,27 @@ namespace DDA.Business.Services
                 return new ImportResultViewModel { Success = false, MessageKey = "Upload_NoValidRows", CampaignName = campaign.Name, SkippedCount = skipped };
 
             var now = DateTime.Now;
-            var entries = rows.Select(r => new CampaignEntry
+            var entries = new List<CampaignEntry>();
+
+            foreach (var r in rows)
             {
-                CampaignId = campaignId,
-                CIF = r.Cif,
-                Balance = r.Balance,
-                Chances = (int)Math.Floor(r.Balance / BalancePerChance), // 3601 => 3, 1900 => 1
-                IsWithdrawn = false,
-                CreatedBy = userId,
-                CreatedOn = now
-            }).ToList();
+                var chances = (int)Math.Floor(r.Balance / BalancePerChance); // 3601 => 3, 800 => 0
+                for (var i = 0; i < chances; i++)
+                {
+                    entries.Add(new CampaignEntry
+                    {
+                        CampaignId = campaignId,
+                        CIF = r.Cif,
+                        Balance = r.Balance,
+                        IsWithdrawn = false,
+                        CreatedBy = userId,
+                        CreatedOn = now
+                    });
+                }
+            }
+
+            if (entries.Count == 0)
+                return new ImportResultViewModel { Success = false, MessageKey = "Upload_NoValidRows", CampaignName = campaign.Name, SkippedCount = skipped };
 
             var inserted = _repo.InsertEntries(entries);
             return new ImportResultViewModel
@@ -114,23 +125,22 @@ namespace DDA.Business.Services
             {
                 Success = true,
                 RemainingCount = remaining.Count,
-                WheelIds = Sample(remaining.Select(r => r.Key).ToList(), WheelSegments)
+                WheelIds = Sample(remaining, WheelSegments)
             };
         }
 
         public WheelStateViewModel Spin(int campaignId)
         {
-            // A few retries in case two spins race for the same entry.
             for (var attempt = 0; attempt < 5; attempt++)
             {
                 var remaining = _repo.GetRemaining(campaignId);
                 if (remaining.Count == 0)
                     return new WheelStateViewModel { Success = false, Message = "Spin_AllWithdrawn", RemainingCount = 0, WheelIds = new List<int>() };
 
-                var winnerId = PickWeighted(remaining);
+                var winnerId = remaining[(int)NextLong(remaining.Count)];   // every ID equally likely
                 if (!_repo.TryWithdraw(winnerId)) continue;
 
-                var others = remaining.Select(r => r.Key).Where(id => id != winnerId).ToList();
+                var others = remaining.Where(id => id != winnerId).ToList();
                 var wheel = Sample(others, WheelSegments - 1);
                 wheel.Add(winnerId);
                 Shuffle(wheel);
@@ -144,23 +154,6 @@ namespace DDA.Business.Services
                 };
             }
             return new WheelStateViewModel { Success = false, Message = "Spin_Failed" };
-        }
-
-        // ---- helpers -------------------------------------------------------
-
-        // Each entry is weighted by its Chances (3 chances = 3x more likely than 1 chance).
-        // To make every remaining entry equally likely, replace the weight with 1.
-        private static int PickWeighted(List<KeyValuePair<int, int>> items)
-        {
-            long total = items.Sum(i => (long)i.Value);
-            long roll = NextLong(total);
-            long acc = 0;
-            foreach (var item in items)
-            {
-                acc += item.Value;
-                if (roll < acc) return item.Key;
-            }
-            return items[items.Count - 1].Key;
         }
 
         private static List<int> Sample(List<int> ids, int count)

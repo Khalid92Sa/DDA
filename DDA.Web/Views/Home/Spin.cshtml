@@ -3,33 +3,89 @@
 }
 
 <style type="text/css">
-    .wheel-stage { position: relative; display: inline-block; }
-    .wheel-pointer {
-        position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
-        width: 0; height: 0; z-index: 5;
-        border-left: 22px solid transparent; border-right: 22px solid transparent;
-        border-top: 44px solid #e65727; filter: drop-shadow(0 3px 3px rgba(0,0,0,.35));
+    .wheel-stage {
+        position: relative;
+        display: inline-block;
     }
-    .wheel-hub {
-        position: absolute; top: 50%; left: 50%; width: 70px; height: 70px;
-        transform: translate(-50%, -50%); border-radius: 50%;
-        background: #fff; border: 6px solid #333; box-shadow: 0 0 10px rgba(0,0,0,.4);
-    }
-    #winnerBox {
-        min-height: 150px; display: flex; align-items: center; justify-content: center;
-        font-size: 7rem; font-weight: 800; line-height: 1; color: #1b7f3b; letter-spacing: 4px;
-    }
-    #winnerBox.pop { animation: pop .6s ease-out; }
-    @@keyframes pop { 0% { transform: scale(.3); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
-    #btnSpin { font-size: 1.6rem; padding: .6rem 3rem; border-radius: 50px; }
-    .history-item { font-size: 1.4rem; font-weight: 700; }
-</style>
 
+    .wheel-pointer {
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        z-index: 5;
+        border-left: 22px solid transparent;
+        border-right: 22px solid transparent;
+        border-top: 44px solid #e65727;
+        filter: drop-shadow(0 3px 3px rgba(0,0,0,.35));
+    }
+
+    .wheel-hub {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 70px;
+        height: 70px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: #fff;
+        border: 6px solid #333;
+        box-shadow: 0 0 10px rgba(0,0,0,.4);
+    }
+
+    #winnerBox {
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7rem;
+        font-weight: 800;
+        line-height: 1;
+        color: #1b7f3b;
+        letter-spacing: 4px;
+    }
+
+        #winnerBox.pop {
+            animation: pop .6s ease-out;
+        }
+
+    @@keyframes pop {
+        0% {
+            transform: scale(.3);
+            opacity: 0;
+        }
+
+        70% {
+            transform: scale(1.15);
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    #btnSpin {
+        font-size: 1.6rem;
+        padding: .6rem 3rem;
+        border-radius: 50px;
+    }
+
+    .history-item {
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+</style>
+@Html.AntiForgeryToken()
 <div class="row">
     <div class="col-lg-3 mb-4">
         <div class="bg-grey4 rounded p-4">
             <label for="campaignId">Campaign</label>
-            @Html.DropDownList("campaignId", (SelectList)ViewBag.Campaigns, "-- Select campaign --", new { @class = "form-control", id = "campaignId" })
+            <select id="campaignId" class="form-control">
+                <option value="">@DDA.Resources.Resource.Campaign_Select</option>
+            </select>
             <div class="mt-4">
                 <div class="text-muted">Remaining</div>
                 <div id="remaining" class="h2 font-weight-bold mb-0">-</div>
@@ -145,6 +201,7 @@
 
             // The server picks the winner and marks it Withdrawn immediately.
             $.post('@Url.Action("DoSpin", "Home")', { campaignId: id }, function (s) {
+                debugger;
                 if (!s.Success) {
                     spinning = false;
                     bootbox.alert(s.Message || "Spin failed");
@@ -159,7 +216,8 @@
                     $("#history").prepend('<div class="history-item">#' + s.WinnerId + '</div>');
                     setRemaining(s.RemainingCount);
                 });
-            }, "json").fail(function () {
+            }, "json").fail(function (e) {
+                debugger;
                 spinning = false;
                 bootbox.alert("Spin failed, please try again.");
                 $("#btnSpin").prop("disabled", false);
@@ -167,5 +225,11 @@
         });
 
         draw();
+
+        $.getJSON('@Url.Action("Campaigns", "Home")', function (list) {
+            $.each(list, function (_, c) {
+                $("#campaignId").append($("<option>").val(c.Value).text(c.Text));
+            });
+        });
     })();
 </script>

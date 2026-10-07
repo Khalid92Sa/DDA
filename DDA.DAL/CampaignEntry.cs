@@ -18,7 +18,6 @@ namespace DDA.DAL
         public int CampaignId { get; set; }
         public string CIF { get; set; }
         public decimal Balance { get; set; }
-        public int Chances { get; set; }
         public bool IsWithdrawn { get; set; }
         public Nullable<System.DateTime> WithdrawnOn { get; set; }
         public int CreatedBy { get; set; }
