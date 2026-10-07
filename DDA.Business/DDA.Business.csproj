@@ -65,11 +65,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dependency.cs" />
+    <Compile Include="Interfaces\ICampaignService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CampaignRepository.cs" />
+    <Compile Include="Repositories\ICampaignRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Security\RolePermissionAttribute.cs" />
+    <Compile Include="Services\CampaignService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

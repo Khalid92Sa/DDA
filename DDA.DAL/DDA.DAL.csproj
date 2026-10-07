@@ -58,6 +58,12 @@
     <Compile Include="AuditTrailDetail.cs">
       <DependentUpon>DDAEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Campaign.cs">
+      <DependentUpon>DDAEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignEntry.cs">
+      <DependentUpon>DDAEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DDAEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

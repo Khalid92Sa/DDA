@@ -21,6 +21,9 @@
         <AssociationConnector Association="DDA_SITModel.FK_UserGroups_Groups" />
         <AssociationConnector Association="DDA_SITModel.FK_Lookups_Lookups_ParentId" />
         <AssociationConnector Association="DDA_SITModel.FK_UserGroups_Users" />
+        <EntityTypeShape EntityType="DDA_SITModel.CampaignEntry" Width="1.5" PointX="12.625" PointY="8" />
+        <EntityTypeShape EntityType="DDA_SITModel.Campaign" Width="1.5" PointX="10.375" PointY="8.125" />
+        <AssociationConnector Association="DDA_SITModel.FK_CampaignEntries_Campaigns" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

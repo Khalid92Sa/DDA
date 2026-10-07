@@ -1,0 +1,21 @@
+@model DDA.ViewModels.Campaigns.CampaignViewModel
+@{
+    ViewBag.Title = Model.Id == 0 ? DDA.Resources.Resource.Campaign_Add : DDA.Resources.Resource.Campaign_Edit;
+}
+
+@using (Html.BeginForm("Save", "Campaigns", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.IsActive)
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Name">@DDA.Resources.Resource.Campaign_Name</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = 200, autofocus = "autofocus" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">@DDA.Resources.Resource.Common_Save</button>
+    <a href="@Url.Action("Index", "Campaigns")" class="btn btn-secondary">@DDA.Resources.Resource.Common_Cancel</a>
+}

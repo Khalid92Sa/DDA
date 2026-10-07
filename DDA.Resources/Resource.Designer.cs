@@ -19,7 +19,7 @@ namespace DDA.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "████████")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -88,11 +88,128 @@ namespace DDA.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Campaign.
+        /// </summary>
+        public static string Campaign {
+            get {
+                return ResourceManager.GetString("Campaign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Campaign.
+        /// </summary>
+        public static string Campaign_Add {
+            get {
+                return ResourceManager.GetString("Campaign_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Campaign.
+        /// </summary>
+        public static string Campaign_Edit {
+            get {
+                return ResourceManager.GetString("Campaign_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campaign Name.
+        /// </summary>
+        public static string Campaign_Name {
+            get {
+                return ResourceManager.GetString("Campaign_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A campaign with this name already exists.
+        /// </summary>
+        public static string Campaign_NameExists {
+            get {
+                return ResourceManager.GetString("Campaign_NameExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campaign name is required.
+        /// </summary>
+        public static string Campaign_NameRequired {
+            get {
+                return ResourceManager.GetString("Campaign_NameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No campaigns yet.
+        /// </summary>
+        public static string Campaign_NoData {
+            get {
+                return ResourceManager.GetString("Campaign_NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campaign not found.
+        /// </summary>
+        public static string Campaign_NotFound {
+            get {
+                return ResourceManager.GetString("Campaign_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Records.
+        /// </summary>
+        public static string Campaign_Records {
+            get {
+                return ResourceManager.GetString("Campaign_Records", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -- Select campaign --.
+        /// </summary>
+        public static string Campaign_Select {
+            get {
+                return ResourceManager.GetString("Campaign_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campaigns.
+        /// </summary>
+        public static string Campaigns {
+            get {
+                return ResourceManager.GetString("Campaigns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Common_Cancel {
+            get {
+                return ResourceManager.GetString("Common_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Common_Close {
             get {
                 return ResourceManager.GetString("Common_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Common_Edit {
+            get {
+                return ResourceManager.GetString("Common_Edit", resourceCulture);
             }
         }
         
@@ -151,6 +268,15 @@ namespace DDA.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Common_Save {
+            get {
+                return ResourceManager.GetString("Common_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string Common_Yes {
@@ -187,11 +313,164 @@ namespace DDA.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All entries have been withdrawn..
+        /// </summary>
+        public static string Spin_AllWithdrawn {
+            get {
+                return ResourceManager.GetString("Spin_AllWithdrawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SPIN.
+        /// </summary>
+        public static string Spin_ButtonText {
+            get {
+                return ResourceManager.GetString("Spin_ButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawn IDs.
+        /// </summary>
+        public static string Spin_Drawn {
+            get {
+                return ResourceManager.GetString("Spin_Drawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spin failed, please try again..
+        /// </summary>
+        public static string Spin_Failed {
+            get {
+                return ResourceManager.GetString("Spin_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remaining.
+        /// </summary>
+        public static string Spin_Remaining {
+            get {
+                return ResourceManager.GetString("Spin_Remaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload.
         /// </summary>
         public static string Upload {
             get {
                 return ResourceManager.GetString("Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose an Excel file (.xlsx)..
+        /// </summary>
+        public static string Upload_ChooseFile {
+            get {
+                return ResourceManager.GetString("Upload_ChooseFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel file (CIF | Balance).
+        /// </summary>
+        public static string Upload_ExcelFile {
+            get {
+                return ResourceManager.GetString("Upload_ExcelFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload failed.
+        /// </summary>
+        public static string Upload_FailTitle {
+            get {
+                return ResourceManager.GetString("Upload_FailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First sheet: column A = CIF, column B = Balance (header row optional). One chance is given for every 1000 of balance..
+        /// </summary>
+        public static string Upload_Hint {
+            get {
+                return ResourceManager.GetString("Upload_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Excel file has no valid rows..
+        /// </summary>
+        public static string Upload_NoValidRows {
+            get {
+                return ResourceManager.GetString("Upload_NoValidRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only .xlsx files are supported..
+        /// </summary>
+        public static string Upload_OnlyXlsx {
+            get {
+                return ResourceManager.GetString("Upload_OnlyXlsx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read Excel File.
+        /// </summary>
+        public static string Upload_ReadButton {
+            get {
+                return ResourceManager.GetString("Upload_ReadButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not read the file: {0}.
+        /// </summary>
+        public static string Upload_ReadError {
+            get {
+                return ResourceManager.GetString("Upload_ReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a campaign..
+        /// </summary>
+        public static string Upload_SelectCampaign {
+            get {
+                return ResourceManager.GetString("Upload_SelectCampaign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} invalid row(s) were skipped..
+        /// </summary>
+        public static string Upload_SkippedMessage {
+            get {
+                return ResourceManager.GetString("Upload_SkippedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data inserted successfully for campaign &quot;{0}&quot; with {1} record(s)..
+        /// </summary>
+        public static string Upload_SuccessMessage {
+            get {
+                return ResourceManager.GetString("Upload_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data inserted successfully.
+        /// </summary>
+        public static string Upload_SuccessTitle {
+            get {
+                return ResourceManager.GetString("Upload_SuccessTitle", resourceCulture);
             }
         }
     }

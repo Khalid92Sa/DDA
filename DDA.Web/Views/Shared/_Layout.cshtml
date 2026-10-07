@@ -53,16 +53,9 @@
                 </a>
                 <div class="accordion animated slideInLeft" id="accordion1">
                     <ul class="nav flex-column text-left">
-                        <li>
-                            <a href="@Url.Action("Upload", "Home")" class="nav-link rounded" id="divUpload">
-                                <i class="fas fa-file-alt mr-3"></i>@DDA.Resources.Resource.Upload
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Spin", "Home")" class="nav-link rounded" id="divSpin">
-                                <i class="fas fa-th-large mr-3"></i>@DDA.Resources.Resource.Spin
-                            </a>
-                        </li>
+                        <li><a href="@Url.Action("Index", "Home")" class="nav-link rounded" id="divUpload"><i class="fas fa-file-upload mr-3"></i>Upload</a></li>
+                        <li><a href="@Url.Action("Index", "Campaigns")" class="nav-link rounded" id="divCampaigns"><i class="fas fa-bullhorn mr-3"></i>Campaigns</a></li>
+                        <li><a href="@Url.Action("Spin", "Home")" class="nav-link rounded" id="divSpin"><i class="fas fa-th-large mr-3"></i>Spin</a></li>
                     </ul>
                 </div>
             </div>
@@ -158,12 +151,9 @@
 
 <script>
     $(document).ready(function () {
-        if (window.location.href.indexOf("/Upload") > -1) {
-            $("#divUpload").addClass("active");
-        } else if (window.location.href.indexOf("/Spin") > -1) {
-            $("#divSpin").addClass("active");
-        } else {
-            $("#divUpload").addClass("active");
-        }
-    })
+        var h = window.location.href;
+        if (h.indexOf("/Spin") > -1) $("#divSpin").addClass("active");
+        else if (h.indexOf("/Campaigns") > -1) $("#divCampaigns").addClass("active");
+        else $("#divUpload").addClass("active");
+    });
 </script>

@@ -101,4 +101,37 @@
 	<data name="ApplicationName" xml:space="preserve">
     <value>DDA</value>
   </data>
+
+	<!-- Paste these <data> entries into DDA.Resources/Resource.ar.resx, just before </root> -->
+	<data name="Campaigns" xml:space="preserve"><value>الحملات</value></data>
+	<data name="Campaign" xml:space="preserve"><value>الحملة</value></data>
+	<data name="Campaign_Add" xml:space="preserve"><value>إضافة حملة</value></data>
+	<data name="Campaign_Edit" xml:space="preserve"><value>تعديل الحملة</value></data>
+	<data name="Campaign_Name" xml:space="preserve"><value>اسم الحملة</value></data>
+	<data name="Campaign_Records" xml:space="preserve"><value>عدد السجلات</value></data>
+	<data name="Campaign_NoData" xml:space="preserve"><value>لا توجد حملات بعد</value></data>
+	<data name="Campaign_Select" xml:space="preserve"><value>-- اختر الحملة --</value></data>
+	<data name="Campaign_NameRequired" xml:space="preserve"><value>اسم الحملة مطلوب</value></data>
+	<data name="Campaign_NameExists" xml:space="preserve"><value>توجد حملة بنفس الاسم</value></data>
+	<data name="Campaign_NotFound" xml:space="preserve"><value>الحملة غير موجودة</value></data>
+	<data name="Common_Save" xml:space="preserve"><value>حفظ</value></data>
+	<data name="Common_Cancel" xml:space="preserve"><value>إلغاء</value></data>
+	<data name="Common_Edit" xml:space="preserve"><value>تعديل</value></data>
+	<data name="Upload_ExcelFile" xml:space="preserve"><value>ملف إكسل (CIF | الرصيد)</value></data>
+	<data name="Upload_ReadButton" xml:space="preserve"><value>قراءة ملف إكسل</value></data>
+	<data name="Upload_Hint" xml:space="preserve"><value>الورقة الأولى: العمود A = رقم العميل CIF، العمود B = الرصيد (صف العناوين اختياري). تُمنح فرصة واحدة لكل 1000 من الرصيد.</value></data>
+	<data name="Upload_SelectCampaign" xml:space="preserve"><value>الرجاء اختيار الحملة.</value></data>
+	<data name="Upload_ChooseFile" xml:space="preserve"><value>الرجاء اختيار ملف إكسل (.xlsx).</value></data>
+	<data name="Upload_OnlyXlsx" xml:space="preserve"><value>يتم دعم ملفات .xlsx فقط.</value></data>
+	<data name="Upload_SuccessTitle" xml:space="preserve"><value>تمت إضافة البيانات بنجاح</value></data>
+	<data name="Upload_FailTitle" xml:space="preserve"><value>فشل رفع الملف</value></data>
+	<data name="Upload_SuccessMessage" xml:space="preserve"><value>تمت إضافة البيانات بنجاح للحملة "{0}" بعدد {1} سجل.</value></data>
+	<data name="Upload_SkippedMessage" xml:space="preserve"><value>تم تجاهل {0} صف غير صالح.</value></data>
+	<data name="Upload_NoValidRows" xml:space="preserve"><value>لا يحتوي ملف إكسل على صفوف صالحة.</value></data>
+	<data name="Upload_ReadError" xml:space="preserve"><value>تعذرت قراءة الملف: {0}</value></data>
+	<data name="Spin_ButtonText" xml:space="preserve"><value>ابدأ السحب</value></data>
+	<data name="Spin_Remaining" xml:space="preserve"><value>المتبقي</value></data>
+	<data name="Spin_Drawn" xml:space="preserve"><value>الأرقام المسحوبة</value></data>
+	<data name="Spin_AllWithdrawn" xml:space="preserve"><value>تم سحب جميع الأرقام.</value></data>
+	<data name="Spin_Failed" xml:space="preserve"><value>فشل السحب، الرجاء المحاولة مرة أخرى.</value></data>
 </root>

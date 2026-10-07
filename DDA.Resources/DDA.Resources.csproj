@@ -52,10 +52,13 @@
   <ItemGroup>
     <EmbeddedResource Include="Kendo\Resource.ar.resx" />
     <EmbeddedResource Include="Kendo\Resource.resx" />
-    <EmbeddedResource Include="Resource.ar.resx" />
+    <EmbeddedResource Include="Resource.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

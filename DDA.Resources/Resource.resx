@@ -143,4 +143,36 @@
 	<data name="Common_No" xml:space="preserve">
     <value>No</value>
   </data>
+	<!-- Paste these <data> entries into DDA.Resources/Resource.resx, just before </root> -->
+	<data name="Campaigns" xml:space="preserve"><value>Campaigns</value></data>
+	<data name="Campaign" xml:space="preserve"><value>Campaign</value></data>
+	<data name="Campaign_Add" xml:space="preserve"><value>Add Campaign</value></data>
+	<data name="Campaign_Edit" xml:space="preserve"><value>Edit Campaign</value></data>
+	<data name="Campaign_Name" xml:space="preserve"><value>Campaign Name</value></data>
+	<data name="Campaign_Records" xml:space="preserve"><value>Records</value></data>
+	<data name="Campaign_NoData" xml:space="preserve"><value>No campaigns yet</value></data>
+	<data name="Campaign_Select" xml:space="preserve"><value>-- Select campaign --</value></data>
+	<data name="Campaign_NameRequired" xml:space="preserve"><value>Campaign name is required</value></data>
+	<data name="Campaign_NameExists" xml:space="preserve"><value>A campaign with this name already exists</value></data>
+	<data name="Campaign_NotFound" xml:space="preserve"><value>Campaign not found</value></data>
+	<data name="Common_Save" xml:space="preserve"><value>Save</value></data>
+	<data name="Common_Cancel" xml:space="preserve"><value>Cancel</value></data>
+	<data name="Common_Edit" xml:space="preserve"><value>Edit</value></data>
+	<data name="Upload_ExcelFile" xml:space="preserve"><value>Excel file (CIF | Balance)</value></data>
+	<data name="Upload_ReadButton" xml:space="preserve"><value>Read Excel File</value></data>
+	<data name="Upload_Hint" xml:space="preserve"><value>First sheet: column A = CIF, column B = Balance (header row optional). One chance is given for every 1000 of balance.</value></data>
+	<data name="Upload_SelectCampaign" xml:space="preserve"><value>Please select a campaign.</value></data>
+	<data name="Upload_ChooseFile" xml:space="preserve"><value>Please choose an Excel file (.xlsx).</value></data>
+	<data name="Upload_OnlyXlsx" xml:space="preserve"><value>Only .xlsx files are supported.</value></data>
+	<data name="Upload_SuccessTitle" xml:space="preserve"><value>Data inserted successfully</value></data>
+	<data name="Upload_FailTitle" xml:space="preserve"><value>Upload failed</value></data>
+	<data name="Upload_SuccessMessage" xml:space="preserve"><value>Data inserted successfully for campaign "{0}" with {1} record(s).</value></data>
+	<data name="Upload_SkippedMessage" xml:space="preserve"><value>{0} invalid row(s) were skipped.</value></data>
+	<data name="Upload_NoValidRows" xml:space="preserve"><value>The Excel file has no valid rows.</value></data>
+	<data name="Upload_ReadError" xml:space="preserve"><value>Could not read the file: {0}</value></data>
+	<data name="Spin_ButtonText" xml:space="preserve"><value>SPIN</value></data>
+	<data name="Spin_Remaining" xml:space="preserve"><value>Remaining</value></data>
+	<data name="Spin_Drawn" xml:space="preserve"><value>Drawn IDs</value></data>
+	<data name="Spin_AllWithdrawn" xml:space="preserve"><value>All entries have been withdrawn.</value></data>
+	<data name="Spin_Failed" xml:space="preserve"><value>Spin failed, please try again.</value></data>
 </root>

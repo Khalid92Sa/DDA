@@ -36,5 +36,7 @@ namespace DDA.DAL
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<CampaignEntry> CampaignEntries { get; set; }
+        public virtual DbSet<Campaign> Campaigns { get; set; }
     }
 }

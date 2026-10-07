@@ -1,56 +1,70 @@
-﻿@using Kendo.Mvc.UI;
-@using Kendo.Mvc.Extensions;
+﻿@model DDA.ViewModels.Campaigns.UploadPageViewModel
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = DDA.Resources.Resource.Upload;
 }
 
+@using (Html.BeginForm("UploadExcel", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="grid-filter bg-grey4 rounded p-4 mb-4">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="campaignId">@DDA.Resources.Resource.Campaign</label>
+                @Html.DropDownListFor(m => m.CampaignId, Model.Campaigns, DDA.Resources.Resource.Campaign_Select, new { @class = "form-control", id = "campaignId" })
+            </div>
+            <div class="form-group col-md-5">
+                <label for="file">@DDA.Resources.Resource.Upload_ExcelFile</label>
+                <input type="file" name="file" id="file" class="form-control-file" accept=".xlsx" />
+            </div>
+            <div class="form-group col-md-auto d-flex align-items-end">
+                <button type="submit" id="btnUpload" class="btn btn-primary">
+                    <i class="fas fa-file-upload mr-2"></i>@DDA.Resources.Resource.Upload_ReadButton
+                </button>
+            </div>
+        </div>
+        <small class="text-muted">@DDA.Resources.Resource.Upload_Hint</small>
+    </div>
+}
+
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header @(Model.ResultSuccess ? "bg-success" : "bg-danger") text-white">
+                <h5 class="modal-title">@(Model.ResultSuccess ? DDA.Resources.Resource.Upload_SuccessTitle : DDA.Resources.Resource.Upload_FailTitle)</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="@DDA.Resources.Resource.Common_Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">@Model.ResultMessage</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@DDA.Resources.Resource.Common_Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#Search").on('click', function () {
+        var msgSelectCampaign = '@Html.Raw(HttpUtility.JavaScriptStringEncode(DDA.Resources.Resource.Upload_SelectCampaign))';
+        var msgChooseFile = '@Html.Raw(HttpUtility.JavaScriptStringEncode(DDA.Resources.Resource.Upload_ChooseFile))';
 
+        // The action parameter is "campaignId" (the model property is CampaignId; MVC binding is case-insensitive).
+        $("#uploadForm").on("submit", function (e) {
+            if (!$("#campaignId").val()) {
+                e.preventDefault();
+                bootbox.alert(msgSelectCampaign);
+                return;
+            }
+            if (!$("#file").val()) {
+                e.preventDefault();
+                bootbox.alert(msgChooseFile);
+                return;
+            }
+            $("#btnUpload").prop("disabled", true);
         });
-        $("#ClearSearch").on('click', function () {
-            $('#CategoryId').val("");
-            $("#StatusId").val("");
-        });
+
+        @if (Model.HasResult)
+        {
+            <text>$("#resultModal").modal("show");</text>
+        }
     });
-
-    // function dataReadJsFunction(page, pageSize, readUrl) {
-    //     var token = $('input[name="__RequestVerificationToken"]').val();
-    //     return {
-    //         categoryId: $('#CategoryId').val(),
-    //         statusId: $('#StatusId').val(),
-    //         page: page,
-    //         pageSize: pageSize
-    //     };
-    // }
-
-
 </script>
-
-@Html.AntiForgeryToken()
-
-
-<div class="grid-filter bg-grey4 rounded p-4 mb-4">
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label class="d-inline-flex align-self-center mr-2">Category</label>
-            <select class="form-control"></select>
-        </div>
-        <div class="form-group col-md-4 mb-0">
-            <label class="d-inline-flex align-self-center mr-2">Status</label>
-            <select class="form-control"></select>
-        </div>
-        <div class="form-group col-md-auto mb-0">
-            <input type="button" id="Search" value="Search" class="btn btn-primary" />
-            <input type="button" id="ClearSearch" value="Clear" class="btn btn-secondary" />
-        </div>
-    </div>
-</div>
-
-<div class="form-row">
-    <div class="form-group col-12">
-        @*@{ Html.RenderPartial("_KendoDynamicGrid");}*@
-    </div>
-</div>

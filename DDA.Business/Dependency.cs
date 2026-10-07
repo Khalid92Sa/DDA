@@ -27,6 +27,9 @@ namespace DDA.Business
 
             IoC.Register(Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestyleTransient());
             IoC.Register(Component.For<IUserService>().ImplementedBy<UserService>().LifestyleTransient());
+
+            IoC.Register(Component.For<ICampaignRepository>().ImplementedBy<CampaignRepository>().LifestyleTransient());
+            IoC.Register(Component.For<ICampaignService>().ImplementedBy<CampaignService>().LifestyleTransient());
         }
     }
 }
