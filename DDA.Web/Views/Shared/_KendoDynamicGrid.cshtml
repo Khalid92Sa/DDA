@@ -1,0 +1,677 @@
+﻿@using Kendo.Mvc.UI
+@using SSSFramework;
+@model DDA.ViewModels.Kendo.KendoGridViewModel
+
+@{
+    var resourceType = Model.ResourceType;
+    var deleteMessage = !string.IsNullOrEmpty(Model.DeleteMessageResourceKey) ? ResourceHelper.Resources.Get(Model.DeleteMessageResourceKey, resourceType) : string.Empty;
+    var exportToPdfText = !string.IsNullOrEmpty(Model.ExportToPdfButtonResourceKey) ? ResourceHelper.Resources.Get(Model.ExportToPdfButtonResourceKey, resourceType) : string.Empty;
+    var exportToExcelText = !string.IsNullOrEmpty(Model.ExportToExcelButtonResourceKey) ? ResourceHelper.Resources.Get(Model.ExportToExcelButtonResourceKey, resourceType) : string.Empty;
+    var addNewText = !string.IsNullOrEmpty(Model.AddNewResourceKey) ? ResourceHelper.Resources.Get(Model.AddNewResourceKey, resourceType) : string.Empty;
+    var customButtonText = Model.EnableCustomButtonStaticText ? ResourceHelper.Resources.Get(Model.CustomButtonTextStatic, resourceType) : (!string.IsNullOrEmpty(Model.CustomButtonResourceKey) ? ResourceHelper.Resources.Get(Model.CustomButtonResourceKey, resourceType) : "Custom");
+    var customButtonTwoStateText = Model.EnableTwoStateTextForCustomButton ? ResourceHelper.Resources.Get(Model.TwoStateTextResourceKeyForCustomButton, resourceType) : "";
+    var addnewButtonText = !string.IsNullOrEmpty(Model.AddNewResourceKey) ? ResourceHelper.Resources.Get(Model.AddNewResourceKey, resourceType) : "Add New";
+    var editButtonText = !string.IsNullOrEmpty(Model.EditButtonResourceKey) ? ResourceHelper.Resources.Get(Model.EditButtonResourceKey, resourceType) : "Edit";
+    var editButtonTwoStateText = Model.EnableTwoStateTextForEditButton ? ResourceHelper.Resources.Get(Model.TwoStateTextResourceKeyForEditButton, resourceType) : "";
+    var viewButtonText = !string.IsNullOrEmpty(Model.ViewButtonResourceKey) ? ResourceHelper.Resources.Get(Model.ViewButtonResourceKey, resourceType) : "View";
+    var viewButtonTwoStateText = Model.EnableTwoStateTextForViewButton ? ResourceHelper.Resources.Get(Model.TwoStateTextResourceKeyForViewButton, resourceType) : "";
+    var deleteButtonText = !string.IsNullOrEmpty(Model.DeleteButtonResourceKey) ? ResourceHelper.Resources.Get(Model.DeleteButtonResourceKey, resourceType) : "Delete";
+    var deleteButtonTwoStateText = Model.EnableTwoStateTextForDeleteButton ? ResourceHelper.Resources.Get(Model.TwoStateTextResourceKeyForDeleteButton, resourceType) : "";
+    var enablePopupDeleteMessage = ResourceHelper.Resources.Get("EnableOpportunityMsg", resourceType);
+    var disablePopupDeleteMessage = ResourceHelper.Resources.Get("DisableOpportunityMsg", resourceType);
+    Model.Height = !string.IsNullOrEmpty(Model.Height) ? Model.Height : "500px";
+}
+
+<!-- @Model.GridName Kendo Grid -->
+<!-- Version @Model.Version -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addPopup span").addClass("k-icon k-add"); //spanAddNew
+        $("#addNew span").addClass("k-icon k-add"); //spanAddNew
+        $("#exportPdf span").addClass("k-icon k-pdf"); //spanExportPdf
+        $("#exportExcel span").addClass("k-icon k-excel"); //spanExportExcel
+    });
+</script>
+
+<style type="text/css">
+    .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+        min-width: 40px !important;
+    }
+
+    #exportPdf span {
+        background-image: url('@Url.Content("~/Contents/Images/pdf-16.png")');
+    }
+
+    #exportExcel span {
+        background-image: url('@Url.Content("~/Contents/Images/excel-16.png")');
+    }
+
+    #SMEsGridArea td,  #SMEsGridArea th{
+      width: 25%;
+    }
+
+    #CategoriesGridArea td , #CategoriesGridArea th{
+         width: 25%;
+    }
+    #RFPsGridArea td , #RFPsGridArea th{
+         width: 14%;
+    }
+
+    #TransactionsGridArea td , #TransactionsGridArea th{
+        width: 17.3333%;
+    }
+    #RFPApplicationsGridArea table{
+        table-layout: fixed;
+    }
+
+</style>
+
+<script type="text/javascript">
+    function @(Model.GridName)_onRowBound(e) {
+
+        @{
+            //*****************************************
+            //** Two state for View button.
+            //*****************************************
+
+            if (Model.EnableCustomRowBound)
+            {
+                <text>
+                 var Rowsdata =  this.dataSource.view();
+                 var selected = @(Model.CustomRowBoundName)(Rowsdata);
+
+                for (var i=0; i < Rowsdata.length; i++)
+                {
+
+                    var dataItem = Rowsdata[i];
+                    var row = $("#@Model.GridName").find("[data-uid='" + dataItem.uid + "']");
+
+                    if(selected.indexOf(dataItem.Id) !== -1)
+                    {
+
+                        $(row).find('.chkbx').prop('checked' , true);
+                    }
+
+                }
+               </text>
+            }
+            if (Model.EnableTwoStateTextForViewButton)
+            {
+                <text>
+        var data = this.dataSource.view();
+
+        for (var i=0; i < data.length; i++) {
+            var dataItem = data[i];
+            var idValue = dataItem['@(Model.TwoStateTextPropertyNameForViewButton)'];
+            var row = $("#@Model.GridName").find("[data-uid='" + dataItem.uid + "']");
+            var viewButton = $(row).find("a[id='" + '@(Model.GridName)_viewItem' + "']");
+
+            if(idValue != 'undefined' && idValue != null)
+            {
+                $(viewButton).find("span").html(' ');
+                if(idValue.toString().toLocaleLowerCase() == '@Model.TwoStateTextPropertyValueForViewButton'.toLocaleLowerCase()) {
+                    //** Change view button text.
+                    var text = '@viewButtonTwoStateText';
+                    $(viewButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateChangedButtonColor");
+                    $(viewButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateDefaultButtonColor":"transparent")
+                    });
+                }
+                else {
+                    var text = '@viewButtonText';
+                    $(viewButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateDefaultButtonColor");
+                    $(viewButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateChangedButtonColor":"transparent")
+                    });
+                }
+            }
+        }
+        </text>
+            }
+
+            //*****************************************
+            //** Two state for Edit button
+            //*****************************************
+            if (Model.EnableTwoStateTextForEditButton)
+            {
+                <text>
+        var data = this.dataSource.view();
+
+        for (var i=0; i < data.length; i++) {
+            var dataItem = data[i];
+            var idValue = dataItem['@(Model.TwoStateTextPropertyNameForEditButton)'];
+            var row = $("#@Model.GridName").find("[data-uid='" + dataItem.uid + "']");
+            var editButton = $(row).find("a[id='" + '@(Model.GridName)_editItem' + "']");
+
+            if(idValue != 'undefined' && idValue != null)
+            {
+                $(editButton).find("span").html(' ');
+                if(idValue.toString().toLocaleLowerCase() == '@Model.TwoStateTextPropertyValueForEditButton'.toLocaleLowerCase()) {
+                    //** Change edit button text.
+                    var text = '@editButtonTwoStateText';
+                    $(editButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateChangedButtonColor");
+                    $(editButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateDefaultButtonColor":"transparent")
+                    });
+                }
+                else {
+                    var text = '@editButtonText';
+                    $(editButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateDefaultButtonColor");
+                    $(editButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateChangedButtonColor":"transparent")
+                    });
+                }
+            }
+        }
+        </text>
+            }
+
+            //*****************************************
+            //** Two state for Delete button.
+            //*****************************************
+            if (Model.EnableTwoStateTextForDeleteButton)
+            {
+                <text>
+        var data = this.dataSource.view();
+
+        for (var i=0; i < data.length; i++) {
+            var dataItem = data[i];
+            var idValue = dataItem['@(Model.TwoStateTextPropertyNameForDeleteButton)'];
+            var row = $("#@Model.GridName").find("[data-uid='" + dataItem.uid + "']");
+            var deleteButton = $(row).find("a[id='" + '@(Model.GridName)_deleteItem' + "']");
+
+            if(idValue != 'undefined' && idValue != null)
+            {
+                $(deleteButton).find("span").html(' ');
+                if(idValue.toString().toLocaleLowerCase() == '@Model.TwoStateTextPropertyValueForDeleteButton'.toLocaleLowerCase()) {
+                    //** Change delete button text.
+                    var text = '@deleteButtonTwoStateText';
+                    $(deleteButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateChangedButtonColor");
+                    $(deleteButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateDefaultButtonColor":"transparent")
+                    });
+                }
+                else {
+                    var text = '@deleteButtonText';
+                    $(deleteButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateDefaultButtonColor");
+                    $(deleteButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateChangedButtonColor":"transparent")
+                    });
+                }
+            }
+        }
+        </text>
+            }
+
+            //*****************************************
+            //** Two state for Custom button.
+            //*****************************************
+            if (Model.EnableTwoStateTextForCustomButton)
+            {
+                <text>
+        var data = this.dataSource.view();
+
+        for (var i=0; i < data.length; i++) {
+            var dataItem = data[i];
+            var idValue = dataItem['@(Model.TwoStateTextPropertyNameForCustomButton)'];
+            var row = $("#@Model.GridName").find("[data-uid='" + dataItem.uid + "']");
+            var customButton = $(row).find("a[id='" + '@(Model.GridName)_customItem' + "']");
+
+            if(idValue != 'undefined' && idValue != null)
+            {
+                $(customButton).find("span").html(' ');
+                if(idValue.toString().toLocaleLowerCase() == '@Model.TwoStateTextPropertyValueForCustomButton'.toLocaleLowerCase()) {
+                    //** Change custom button text.
+                    var text = '@customButtonTwoStateText';
+                    $(customButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateChangedButtonColor");
+                    $(customButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateDefaultButtonColor":"transparent")
+                    });
+                }
+                else {
+                    var text = '@customButtonText';
+                    $(customButton).find("span").html(text);
+                    row.css("background-color", "@Model.TwoStateDefaultButtonColor");
+                    $(customButton).hover(function(e) {
+                        $(this).css("background-color",e.type === "mouseenter"? "@Model.TwoStateChangedButtonColor":"transparent")
+                    });
+                }
+            }
+        }
+        </text>
+            }
+
+            if (Model.ShowIconOnActionButtons)
+            {
+                <text>
+        $(".k-grid-View").find("span").addClass("k-icon k-i-restore");
+        $(".k-grid-Edit").find("span").addClass("k-icon k-edit");
+        $(".k-grid-Delete").find("span").addClass("k-icon k-delete");
+        $(".k-grid-Custom").find("span").addClass("k-icon k-i-group");
+
+        $('.k-grid-View').each(function () {
+            $(this).get(0).lastChild.nodeValue = " ";
+        });
+        $('.k-grid-Edit').each(function () {
+            $(this).get(0).lastChild.nodeValue = " ";
+        });
+        $('.k-grid-Delete').each(function () {
+            $(this).get(0).lastChild.nodeValue = " ";
+        });
+        $('.k-grid-Custom').each(function () {
+            $(this).get(0).lastChild.nodeValue = " ";
+        });
+        </text>
+            }
+    }
+    }
+</script>
+
+<script type="text/javascript">
+    //** Global variables
+    var @(Model.GridName)_totalSelectedCheckboxes = 0;
+    var @(Model.GridName)_selectedArray = new Array();
+
+    $(document).ready(function () {
+        $('#@Model.GridName').on('click', '.chkbx', function () {
+            var checked = $(this).is(':checked');
+            var grid = $('#@Model.GridName').data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            // dataItem.IsChecked = checked;
+            if('@Model.EnableCustomSelect' == 'True')
+            {
+                @(Model.EnableCustomSelectJSName)(checked , dataItem);
+            }
+            if (checked == false) {
+                $("#@(Model.GridName)checkAll").attr('checked', false);
+                if (@(Model.GridName)_totalSelectedCheckboxes != 0) {
+                    @(Model.GridName)_totalSelectedCheckboxes--;
+
+                    var rowIndex;
+                    $.each(@(Model.GridName)_selectedArray, function (index, value) {
+                        if (value.@(Model.IdViewModuleIsHidden ? Model.IdViewModuleName + "_hidden" : Model.IdViewModuleName) == dataItem.@(Model.IdViewModuleIsHidden ? Model.IdViewModuleName + "_hidden" : Model.IdViewModuleName)) {
+                            rowIndex = index;
+                        }
+                    });
+                    @(Model.GridName)_selectedArray.splice(rowIndex, 1);
+                }
+            }
+            else {
+                @(Model.GridName)_totalSelectedCheckboxes++;
+                @(Model.GridName)_selectedArray.push(dataItem);
+
+                if (@(Model.GridName)_totalSelectedCheckboxes == grid._data.length && @(Model.GridName)_totalSelectedCheckboxes > 0) {
+                    $("#@(Model.GridName)checkAll").prop('checked', true);
+                }
+            }
+        })
+    });
+
+    function @(Model.GridName)_selectAll(element    ) {
+        var state = $(element).is(':checked');
+        if('@Model.EnableCustomSelectAll' == 'True')
+        {
+            @(Model.EnableCustomSelectAllJSName)(state , element);
+            return;
+        }
+
+
+        var grid = $('#@Model.GridName').data().kendoGrid;
+        @(Model.GridName)_selectedArray = [];
+        @(Model.GridName)_totalSelectedCheckboxes = 0;
+        $.each(grid.dataSource.view(), function () {
+            // this.IsChecked = state;
+            if (state) {
+                @(Model.GridName)_selectedArray.push(this);
+                @(Model.GridName)_totalSelectedCheckboxes++;
+            }
+        });
+        grid.refresh();
+        $('.chkbx').attr('checked', state);
+    }
+
+    function @(Model.GridName)_readWrapper() {
+       //debugger;
+        var readUrl = '@Url.Action(Model.FillDataActionName, Model.Controller)';
+        var page;
+        var pageSize;
+        var isPageable = @Model.Pageable.ToString().ToLower();
+        if(isPageable)
+        {
+            page = $("#@Model.GridName").data('kendoGrid').dataSource.page();
+            pageSize = $("#@Model.GridName").data('kendoGrid').dataSource.pageSize();
+        }
+        else{
+            page = 1;
+            pageSize = @(int.MaxValue);
+        }
+        return @(Model.ReadJsFunctionName)(page, pageSize, readUrl); //** Call the read js function.
+    }
+
+    function @(Model.GridName)_viewRow(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var idValue = dataItem['@(Model.IdViewModuleIsHidden ? Model.IdViewModuleName + "_hidden" : Model.IdViewModuleName)'];
+        if (idValue == undefined)
+            idValue = dataItem['@Model.IdViewModuleName'];
+
+        @{
+            if (Model.CallJsFunctionOnViewButton)
+            {
+                @(Model.ViewButtonJsFunctionName + "(idValue);")
+            }
+            else
+            {
+                @:window.location.href = '@Url.Action(Model.ViewActionName, Model.Controller)?@Model.IdQueryStringName=' + idValue;
+                    }
+        }
+    }
+
+    function @(Model.GridName)_editRow(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var idValue = dataItem['@(Model.IdViewModuleIsHidden ? Model.IdViewModuleName + "_hidden" : Model.IdViewModuleName)'];
+        if (idValue == undefined)
+            idValue = dataItem['@Model.IdViewModuleName'];
+
+        @{
+            if (Model.CallJsFunctionOnEditButton)
+            {
+              @(Model.EditButtonJsFunctionName + "(idValue);")
+            }
+            else
+            {
+              @:window.location.href = '@Url.Action(Model.EditActionName, Model.Controller)?@Model.IdQueryStringName=' + idValue;
+                    }
+         }
+    }
+
+    function @(Model.GridName)_deleteRow(e) {
+        e.preventDefault();
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var msg = false;
+
+        var isDeleted = dataItem['IsDeleted'];
+        var confirmMessage = isDeleted ? '@enablePopupDeleteMessage' : '@disablePopupDeleteMessage';
+
+        if (typeof bootbox != 'undefined') {
+            bootbox.confirm({
+                message: confirmMessage,
+                buttons: {
+                    confirm: {
+                        label: '@DDA.Resources.Resource.Common_Yes',
+                        // className: 'btn-success'
+                    },
+                    cancel: {
+                        label: '@DDA.Resources.Resource.Common_No',
+                        // className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    msg = result;
+                    @(Model.GridName + "_doDelete(e, dataItem, msg);")
+                }
+            });
+        }
+        else {
+            msg = confirm('@deleteMessage');
+            @(Model.GridName + "_doDelete(e, dataItem, msg);")
+        }
+    }
+
+    function @(Model.GridName)_doDelete(e, dataItem, msg) {
+        if (!msg) {
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+            return false;
+        } else {
+            var idValue = dataItem['@(Model.IdViewModuleIsHidden ? Model.IdViewModuleName + "_hidden" : Model.IdViewModuleName)'];
+
+            if (idValue == undefined)
+                idValue = dataItem['@Model.IdViewModuleName'];
+
+            @{
+                if (Model.CallJsFunctionOnDeleteButton)
+                {
+                    @(Model.DeleteButtonJsFunctionName + "(idValue, e, dataItem);")
+                }
+                else
+                {
+                    @:window.location.href = '@Url.Action(Model.DeleteActionName, Model.Controller)?@Model.IdQueryStringName=' + idValue;
+                            }
+            }
+        }
+    }
+
+    @{
+       if (Model.ShowCustomButton)
+       {
+             <text>
+    function @(Model.GridName)_customRow(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var idValue = dataItem['@(Model.IdViewModuleIsHidden ? Model.IdViewModuleName + "_hidden" : Model.IdViewModuleName)'];
+
+        if (idValue == undefined)
+            idValue = dataItem['@Model.IdViewModuleName'];
+
+        @{
+                        if (Model.CallJsFunctionOnCustomButton)
+                        {
+                          @(Model.CustomButtonJsFunctionName + "(idValue);")
+                        }
+                        else
+                        {
+                            @:window.location.href = '@Url.Action(Model.CustomButtonActionName, Model.Controller)?@Model.IdQueryStringName=' + idValue;
+                                }
+                    }
+    }
+    </text>
+       }
+    }
+</script>
+
+<script type="text/javascript">
+    function @(Model.GridName)_exportThis(e) {
+        var grid = $('#@Model.GridName').data('kendoGrid');
+
+        // ask the parameterMap to create the request object for you
+        var requestObject = (new kendo.data.transports["aspnetmvc-server"]({ prefix: "" }))
+            .options.parameterMap({
+                page: grid.dataSource.page(),
+                sort: grid.dataSource.sort(),
+                filter: grid.dataSource.filter()
+            });
+
+        // Get the export link as jQuery object
+        var $exportLink = $(e);
+        // Get its 'href' attribute - the URL where it would navigate to
+        var href = $exportLink.attr('href');
+        // Update the 'page' parameter with the grid's current page
+        href = href.replace(/page=([^&]*)/, 'page=' + (requestObject.page || '#'));
+        // Update the 'sort' parameter with the grid's current sort descriptor
+        href = href.replace(/sort=([^&]*)/, 'sort=' + (requestObject.sort || '#'));
+        // Update the 'pageSize' parameter with the grid's current pageSize
+        href = href.replace(/pageSize=([^&]*)/, 'pageSize=' + (grid.dataSource._pageSize || '#'));
+        //update filter descriptor with the filters applied
+        href = href.replace(/filter=([^&]*)/, 'filter=' + (requestObject.filter || '#'));
+        // Update the 'href' attribute
+        $exportLink.attr('href', href);
+    }
+</script>
+
+<script>
+    function @(Model.GridName)_dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+</script>
+
+<div id="@(Model.GridName)Area" class="@(CultureHelper.IsArabic ? "k-rtl" : "")">
+    @(Html.Kendo().Grid(Model.Data)
+          .Name(Model.GridName)
+          .Columns(columns =>
+          {
+          if (Model.FixedActionButtonsFirstColumn)
+          {
+              if (Model.ShowDeleteButton || Model.ShowEditButton || Model.ShowViewButton || Model.ShowCustomButton)
+              {
+                  columns.Command(command =>
+                  {
+                      if (Model.ShowViewButton)
+                          command.Custom(!Model.EnableTwoStateTextForViewButton ? viewButtonText : " ").Click(Model.GridName + "_viewRow").HtmlAttributes(new { id = Model.GridName + "_viewItem", title = viewButtonText });
+                      if (Model.ShowEditButton)
+                          command.Custom(!Model.EnableTwoStateTextForEditButton ? editButtonText : " ").Click(Model.GridName + "_editRow").HtmlAttributes(new { id = Model.GridName + "_editItem", title = editButtonText });
+                      if (Model.ShowDeleteButton)
+                          command.Custom(!Model.EnableTwoStateTextForDeleteButton ? deleteButtonText : " ").Click(Model.GridName + "_deleteRow").HtmlAttributes(new { id = Model.GridName + "_deleteItem", title = deleteButtonText });
+                      if (Model.ShowCustomButton)
+                          command.Custom(!Model.EnableTwoStateTextForCustomButton ? customButtonText : " ").Click(Model.GridName + "_customRow").HtmlAttributes(new { id = Model.GridName + "_customItem", title = customButtonText });
+                  }).Width(Model.ActionsColumnWidth).Locked(Model.EnableFixedActionButtons).Lockable(false);
+              }
+          }
+
+          if (Model.ShowRowSelectCheckBox)
+          {
+              columns.Template(@<text></text>).ClientTemplate("<input type='checkbox'  class='chkbx' />")
+                    .HeaderTemplate("<input type='checkbox' id='" + Model.GridName + "checkAll' onclick='" + Model.GridName + "_selectAll(this)'/>").Width(30);
+              }
+
+              foreach (System.Data.DataColumn column in Model.Data.Columns)
+              {
+                  var columnWidth = (column.Caption != "-1") ? Convert.ToInt32(column.Caption) : 170;
+                  var colName = column.ColumnName.ToLower().Contains("_readonly") ? column.ColumnName.Replace("_readonly", string.Empty) : column.ColumnName;
+                  var title = ResourceHelper.Resources.Get(colName + "_Title", resourceType);
+                  if (Model.Data != null)
+                  {
+                      if (column.ColumnName.ToLower().Contains("_hidden"))
+                      {
+                          //var fieldIndex = column.ColumnName.IndexOf("_hidden", System.StringComparison.Ordinal);
+                          //var columnName = column.ColumnName.Remove(fieldIndex, column.ColumnName.Length - fieldIndex);
+                          columns.Bound(column.ColumnName).Hidden().Visible(false);
+                      }
+                      else
+                      {
+                          if (column.DataType == typeof(DateTime))
+                              columns.Bound(column.ColumnName).Width(columnWidth).Filterable(x => x.Enabled(Model.Filterable).Cell(cell => cell.Operator("contains"))).Title(title).EditorTemplateName("String").Format("{0:dd/MM/yyyy}");
+                          else
+                              columns.Bound(column.ColumnName).Width(columnWidth).Filterable(x => x.Enabled(Model.Filterable).Cell(cell => cell.Operator("contains"))).Title(title).EditorTemplateName("String");
+                      }
+                  }
+              }
+
+              if (!Model.FixedActionButtonsFirstColumn)
+              {
+                  if (Model.ShowDeleteButton || Model.ShowEditButton || Model.ShowViewButton || Model.ShowCustomButton)
+                  {
+                      columns.Command(command =>
+                      {
+                          if (Model.ShowViewButton)
+                              command.Custom(!Model.EnableTwoStateTextForViewButton ? viewButtonText : " ").Click(Model.GridName + "_viewRow").HtmlAttributes(new { id = Model.GridName + "_viewItem", title = viewButtonText });
+                          if (Model.ShowEditButton)
+                              command.Custom(!Model.EnableTwoStateTextForEditButton ? editButtonText : " ").Click(Model.GridName + "_editRow").HtmlAttributes(new { id = Model.GridName + "_editItem", title = editButtonText });
+                          if (Model.ShowDeleteButton)
+                              command.Custom(!Model.EnableTwoStateTextForDeleteButton ? deleteButtonText : " ").Click(Model.GridName + "_deleteRow").HtmlAttributes(new { id = Model.GridName + "_deleteItem", title = deleteButtonText });
+                          if (Model.ShowCustomButton)
+                              command.Custom(!Model.EnableTwoStateTextForCustomButton ? customButtonText : " ").Click(Model.GridName + "_customRow").HtmlAttributes(new { id = Model.GridName + "_customItem", title = customButtonText });
+                      }).Width(Model.ActionsColumnWidth);
+                  }
+              }
+          })
+    .HtmlAttributes(new { style = "height:" + Model.Height + ";" })
+    .Editable(x => x.Enabled(Model.Editable).Mode(GridEditMode.InCell))
+    .Scrollable(x => x.Enabled(Model.Scrollable))
+    .Groupable(x => x.Enabled(Model.Groupable))
+    .Sortable(x => x.Enabled(Model.Sortable))
+    //   .ClientDetailTemplateId(Model.DetailsTemplateName)
+    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+    .ColumnMenu(x => x.Enabled(Model.EnableColumnMenu))
+    .Pageable(x => x.Enabled(Model.Pageable)
+    .Refresh(true)
+    .PageSizes(new int[] { 5, 10, 20, 50, 100, 500 })
+    .ButtonCount(5))
+    .Selectable(x => x.Enabled(Model.Selectable)
+    .Mode(GridSelectionMode.Single))
+    .DataSource(dataSource => dataSource
+    .Ajax().Total(Model.Total)
+    .Model(model =>
+    {
+        string id = Model.Data.Columns[0].ColumnName;
+        foreach (System.Data.DataColumn column in Model.Data.Columns)
+        {
+            if (column.ColumnName.Contains("_readonly"))
+                model.Field(column.ColumnName, column.DataType);//.Editable(false);
+            else
+                model.Field(column.ColumnName, column.DataType);
+        }
+
+        model.Id(id);
+    })
+    .Read(read =>
+    {
+        if (!Model.UseReadParameter || string.IsNullOrEmpty(Model.ReadJsFunctionName))
+            read.Action(Model.FillDataActionName, Model.Controller);
+        else
+        {
+            read.Action(Model.FillDataActionName, Model.Controller).Data(Model.GridName + "_readWrapper"); //, new { readParameter = ViewData["ReadParameterValue"], readParameter2 = ViewData["SecondReadParameterValue"], readParameter3 = ViewData["ThirdReadParameterValue"] });
+        }
+    }
+    ).PageSize(Model.DefualtPageSize))
+    .ToolBar(toolbar =>
+    {
+        if (Model.ShowAddNewButton)
+        {
+            if (Model.CallJsFunctionOnAddNewButton)
+            {
+                toolbar.Custom()
+                .Text(addNewText)
+                .HtmlAttributes(new { id = Model.GridName + "_addPopup", onclick = Model.AddButtonJsFunctionName + "()", href = "javascript:void(0);" });
+            }
+            else
+            {
+                toolbar.Custom()
+                .Text(addNewText)
+                .HtmlAttributes(new { id = Model.GridName + "_addNew" })
+                .Action(Model.AddNewActionName, Model.Controller);
+            }
+        }
+
+        if (Model.ShowExportToPdfButton)
+        {
+            toolbar.Custom()
+            .Text(exportToPdfText)
+            .HtmlAttributes(new { id = Model.GridName + "_exportPdf", onclick = Model.GridName + "_exportThis(this)" })
+            .Url(Url.Action(Model.ExportToPdfActionName, Model.Controller, new { page = 1, pageSize = "#", filter = "#", sort = "#" }));
+        }
+
+        if (Model.ShowExportToExcelButton)
+        {
+            toolbar.Custom()
+            .Text(exportToExcelText)
+            .HtmlAttributes(new { id = Model.GridName + "_exportExcel", onclick = Model.GridName + "_exportThis(this)" })
+            .Url(Url.Action(Model.ExportToExcelActionName, Model.Controller, new { page = 1, pageSize = "#", filter = "#", sort = "#" }));
+        }
+    })
+    .Resizable(resize => resize.Columns(true))
+    .Reorderable(reorder => reorder.Columns(true))
+    .Navigatable(x => x.Enabled(Model.Navigatable))
+    .Events(e => e.DataBound(Model.GridName + "_onRowBound")))
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @{
+            if (!Model.Filterable)
+            {
+                @: $("#@(Model.GridName) .k-filter-row").remove();
+                    }
+        }
+    });
+</script>

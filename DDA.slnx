@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DDA.Business/DDA.Business.csproj" Id="bbfd2e90-596d-41e3-8332-d1af0f509ea9" />
+  <Project Path="DDA.DAL/DDA.DAL.csproj" Id="402c2a5c-cf9e-4d6b-9a60-464403da3870" />
+  <Project Path="DDA.Resources/DDA.Resources.csproj" Id="d8f65c42-481d-4b68-a9d3-836d561b922f" />
+  <Project Path="DDA.ViewModels/DDA.ViewModels.csproj" Id="806e2f4d-7969-4be7-b412-421462396fe1" />
+  <Project Path="DDA.Web/DDA.Web.csproj" Id="0619B773-E1A0-4C33-A6C6-FFF3CB3030FD" />
+</Solution>

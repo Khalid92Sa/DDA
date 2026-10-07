@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=███████, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=███████, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CategoryNameAr_Title" xml:space="preserve">
+    <value>اسم الفئة بالعربية</value>
+  </data>
+  <data name="CategoryNameEn_Title" xml:space="preserve">
+    <value> اسم الفئة بالإنجليزية</value>
+  </data>
+  <data name="CategoryName_Title" xml:space="preserve">
+    <value>اسم الفئة</value>
+  </data>
+  <data name="CorrespondingCategories_Title" xml:space="preserve">
+    <value>نوع النشاط</value>
+  </data>
+  <data name="CRNumber_Title" xml:space="preserve">
+    <value>رقم السجل التجاري</value>
+  </data>
+  <data name="Description_Title" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="FullCompanyName_Title" xml:space="preserve">
+    <value>اسم المؤسسة</value>
+  </data>
+  <data name="KendoGrid_AddNew" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
+  <data name="KendoGrid_CustomButtonText" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="KendoGrid_DeleteButtonText" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="KendoGrid_DeleteMessage" xml:space="preserve">
+    <value>هل أنت متأكد من رغبتك في حذف هذا العنصر؟</value>
+  </data>
+  <data name="KendoGrid_EditButtonText" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="KendoGrid_ExportToExcel" xml:space="preserve">
+    <value>تصدير إلى إكسل</value>
+  </data>
+  <data name="KendoGrid_ExportToPDF" xml:space="preserve">
+    <value>تصدير إلى PDF</value>
+  </data>
+  <data name="KendoGrid_ViewButtonText" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="NumberOfRelatedSMEs_Title" xml:space="preserve">
+    <value>عدد الشركات التابعة للفئة</value>
+  </data>
+  <data name="NumberOfRelatedRFPs_Title" xml:space="preserve">
+    <value>عدد المنافسات التابعة للفئة</value>
+  </data>
+  <data name="RequestType_Title" xml:space="preserve">
+    <value>نوع الطلب</value>
+  </data>
+  <data name="SMEName_Title" xml:space="preserve">
+    <value>اسم المؤسسة</value>
+  </data>
+  <data name="Status_Title" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="TransactionNumber_Title" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
+  <data name="Category_Title" xml:space="preserve">
+    <value>الفئة</value>
+  </data>
+  <data name="ContactPersonName_Title" xml:space="preserve">
+    <value>اسم الشخص</value>
+  </data>
+  <data name="Email_Title" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="Mobile_Title" xml:space="preserve">
+    <value>رقم الجوال </value>
+  </data>
+  <data name="NumberOfEmployees_Title" xml:space="preserve">
+    <value>عدد العاملين</value>
+  </data>
+  <data name="OneLineDescription_Title" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="PhoneNumber_Title" xml:space="preserve">
+    <value>رقم هاتف مقدم الخدمة</value>
+  </data>
+  <data name="Productservice_Title" xml:space="preserve">
+    <value>نوع الخدمة</value>
+  </data>
+  <data name="QuantityUnit_Title" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="RFPEndDate_Title" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="RFPNumber_Title" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
+  <data name="RFPStartDate_Title" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="ViewFullRFP" xml:space="preserve">
+    <value>عرض </value>
+  </data>
+  <data name="ViewRFPsApplications" xml:space="preserve">
+    <value>عرض كامل طلبات الإقراح</value>
+  </data>
+  <data name="WantToApply" xml:space="preserve">
+    <value>للطلب</value>
+  </data>
+  <data name="DownloadProposal" xml:space="preserve">
+    <value>الاقتراح</value>
+  </data>
+  <data name="DownloadCR" xml:space="preserve">
+    <value>السجل التجاري</value>
+  </data>
+  <data name="Clickhere_Link" xml:space="preserve">
+    <value>انقر هنا</value>
+  </data>
+  <data name="ViewFullRFP_Header" xml:space="preserve">
+    <value>عرض كامل الطلب</value>
+  </data>
+  <data name="WantToApply_Header" xml:space="preserve">
+    <value>قدم الآن</value>
+  </data>
+  <data name="CompanyName_Title" xml:space="preserve">
+    <value>اسم المنشأة</value>
+  </data>
+  <data name="TotalPrice_Title" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>المرفقات</value>
+  </data>
+  <data name="ReferenceNumber_Title" xml:space="preserve">
+    <value>الرقم المرجعي</value>
+  </data>
+  <data name="Title_Title" xml:space="preserve">
+    <value>عنوان الفرصة</value>
+  </data>
+  <data name="OpportunityTitle_Title" xml:space="preserve">
+    <value>عنوان الفرصة</value>
+  </data>
+  <data name="Participants_Title" xml:space="preserve">
+    <value>المشاركين</value>
+  </data>
+  <data name="GOSINumber_Title" xml:space="preserve">
+    <value>رقم التأمينات</value>
+  </data>
+  <data name="PersonName_Title" xml:space="preserve">
+    <value>اسم مقدم الخدمة</value>
+  </data>
+  <data name="RegistrationNumber_Title" xml:space="preserve">
+    <value>رقم التسجيل</value>
+  </data>
+  <data name="UnifiedNumber_Title" xml:space="preserve">
+    <value>رقم مقدم الخدمة</value>
+  </data>
+  <data name="VATNumber_Title" xml:space="preserve">
+    <value>رقم ضريبة القيمة المضافة</value>
+  </data>
+  <data name="TotalRFPs_Title" xml:space="preserve">
+    <value>مجموع طلبات الإقتراحات</value>
+  </data>
+	<data name="RequestDateTime_Title" xml:space="preserve">
+    <value>تاريخ طلب التسجيل</value>
+  </data>
+	<data name="BidCreatedOn_Title" xml:space="preserve">
+    <value>التاريخ والوقت</value>
+  </data>
+	<data name="Disable" xml:space="preserve">
+    <value>تعطيل</value>
+  </data>
+	<data name="Enable" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
+   <data name="DisableOpportunityMsg" xml:space="preserve">
+    <value>هل أنت متأكد من رغبتك في تعطيل هذه الفرصة؟</value>
+  </data>
+	<data name="EnableOpportunityMsg" xml:space="preserve">
+    <value>هل أنت متأكد من رغبتك في تفعيل هذه الفرصة؟</value>
+  </data>
+</root>

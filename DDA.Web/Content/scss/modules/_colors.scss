@@ -1,0 +1,110 @@
+$primaryColor: #FFCD00;
+$accentColor: #FFDF67;
+$accentColor1: #FFDF67;
+$accentColor2: #63666A;
+$lightPrimaryColor: rgba(255, 205, 0, .2);
+$whiteColor:#ffffff;
+$blackColor:#2C2A29;
+$greyColor: #aaa;
+$greyColor1:#aaa;
+$greyColor2: #D6D7D8;
+$greyColor3: #E6E6E6;
+$greyColor4: #f0f0f0;
+$darkGreyColor:#777;
+$textDanger: #ff3547;
+$secondaryColor:rgba(98,0,234,.1);
+$favorite:#FEE400;
+$success:#28A745;
+$downvote:#FF8888;
+
+// Colors
+.primary-color, .text-primary{
+  color: $primaryColor !important;
+}
+
+.text-primary{
+  color: $primaryColor;
+}
+
+.text-success{
+  color: $success;
+}
+
+.accent-color , .text-accent{
+  color:$accentColor;
+}
+
+.primary-gradient{
+background-image: linear-gradient(To Left , $primaryColor , $accentColor);
+}
+
+.white-color{
+  color: $whiteColor;
+}
+
+.text-grey{
+  color: $greyColor1;
+}
+.text-dark-grey{
+  color: $darkGreyColor;
+}
+
+.text-dark {
+  color: #000 !important;
+}
+.black-color{
+  color:$blackColor;
+}
+
+.danger-color{
+  color:$textDanger;
+}
+
+.background-primary-color, .bg-primary {
+    background-color: $primaryColor !important;
+}
+
+.background-accent-color{
+  background-color: $accentColor;
+}
+
+.background-accent-color1, .bg-accent1{
+  background-color: $accentColor1;
+}
+.background-accent-color2, .bg-accent2 {
+    background-color: $accentColor2;
+}
+.background-white-color, .bg-white {
+    background-color: $whiteColor;
+}
+
+.bg-light-primary {
+    background-color: $lightPrimaryColor;
+}
+
+.bg-grey4 {
+    background-color: $greyColor4;
+}
+
+.bg-grey3 {
+    background-color: $greyColor3;
+}
+
+.bg-grey1 {
+    background-color: $greyColor1;
+}
+.bg-grey2 {
+    background-color: $greyColor2;
+}
+
+.background-black-color {
+    background-color: $blackColor;
+}
+
+.background-grey-color{
+  background-color: $greyColor1;
+}
+
+@mixin primaryGradient {
+  background-image: linear-gradient(To Right , $primaryColor , $accentColor);
+}

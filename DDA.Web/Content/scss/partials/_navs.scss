@@ -1,0 +1,147 @@
+
+.main-menu{
+    display: none;
+      position: absolute;
+      top: 0;
+      z-index: 2;
+      width: 100%;
+     
+  
+      a{
+        color: $whiteColor;
+        display: block;
+        
+        &:hover{
+            text-decoration: none;
+            color: $whiteColor;
+        }
+      }
+  
+      &.show{
+        display: flex;
+      }
+
+      .col-12{
+        background-color: $primaryColor;
+
+        & a:hover{
+            opacity: .9;
+        }
+
+        &:nth-of-type(1){
+            a{
+                background-color: $primaryColor;
+            }
+   
+                  }
+      
+      &:nth-of-type(2){
+        a{
+            background-color: #4ae8e3; 
+        }
+      
+              }
+  &:nth-of-type(3){
+    a{
+        background-color: #5f67bb;
+    }
+  
+          }
+
+&:nth-of-type(4){
+    a{
+        background-color: $accentColor;     
+    }
+ 
+          }
+&:nth-of-type(5){
+    a{
+        background-color: #bfbfbf; 
+    }
+  
+          }
+
+         
+}
+
+  }
+.side-menu {
+    background-color: rgba(255, 223, 103, .7);
+    position: fixed;
+    height: 100vh;
+    z-index: 1;
+
+    ul {
+        a {
+            font-family: $RegularFont;
+            color: $darkGreyColor;
+            padding-top: .7rem;
+            padding-bottom: .7rem;
+            margin-bottom: .3rem;
+
+            &:hover, &:active, &:focus {
+                color: $blackColor;
+                background-color: $whiteColor;
+            }
+
+            &.active {
+                color: $blackColor;
+                background-color: $whiteColor;
+                font-family: $BoldFont;
+
+                &:hover, &:active, &:focus {
+                    color: $blackColor;
+                    background-color: $whiteColor;
+                }
+            }
+
+            &[aria-expanded="true"] {
+                color: $accentColor;
+                background-color: #fff;
+
+                &:hover, &:active, &:focus {
+                    color: $accentColor;
+                    background-color: #fff;
+                }
+
+                & + ul {
+                    a:hover {
+                        color: $accentColor;
+                        background-color: transparent;
+                    }
+
+                    a.active {
+                        color: $whiteColor;
+                        background-color: $primaryColor;
+
+                        &:hover, &:active, &:focus {
+                            color: $whiteColor;
+                            background-color: $primaryColor;
+                        }
+                    }
+                }
+
+                &.dropdown-toggle::after {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+}
+  .dropdown-toggle::after {
+    height: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 18px;
+    left: auto;
+    bottom: 0;
+    position: absolute;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    color: #51555d;
+    transform: rotate(-90deg);
+    transition: all .3s ease-in;
+}

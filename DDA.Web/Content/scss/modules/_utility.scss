@@ -1,0 +1,46 @@
+// Borders
+.rounded-pill{
+    border-radius: 100rem;
+}
+
+.fit-cover{
+    object-fit: cover;
+}
+.badge{
+    font-size: 11px;
+    padding: .5em 1em;
+}
+
+.badge-success {
+    color: $success;
+    background-color: rgba(40, 167, 69,.2);
+}
+
+.badge-in-progress{
+    color: $primaryColor;
+    background-color: rgba(53, 68, 238,.2);
+}
+
+.badge-rejected {
+    color: $textDanger;
+    background-color: rgba(255, 53, 71,.2);
+}
+
+.badge-info{
+    color: $whiteColor;
+    background-color: $accentColor;
+    font-size: 12px;
+}
+@media (min-width: 768px){
+    .pr-md-5, .px-md-5 {
+        padding-left: 4rem!important;
+    }
+    
+    .pl-md-5, .px-md-5 {
+        padding-left: 4rem!important;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}

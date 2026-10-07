@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c7b7c27ab6647978c261564656b6c2b" Name="Diagram1">
+        <EntityTypeShape EntityType="DDA_SITModel.AuditTrail" Width="1.5" PointX="5.75" PointY="8.875" />
+        <EntityTypeShape EntityType="DDA_SITModel.AuditTrailDetail" Width="1.5" PointX="8" PointY="9" />
+        <EntityTypeShape EntityType="DDA_SITModel.GroupPermission" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="DDA_SITModel.Group" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="DDA_SITModel.LookUpCategory" Width="1.5" PointX="8.75" PointY="2.75" />
+        <EntityTypeShape EntityType="DDA_SITModel.Lookup" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DDA_SITModel.Permission" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DDA_SITModel.Setting" Width="1.5" PointX="10.75" PointY="2.75" />
+        <EntityTypeShape EntityType="DDA_SITModel.UserGroup" Width="1.5" PointX="6" PointY="4.875" />
+        <EntityTypeShape EntityType="DDA_SITModel.User" Width="1.5" PointX="3.75" PointY="9.875" />
+        <AssociationConnector Association="DDA_SITModel.FK_AuditTrailDetails_AuditTrail" />
+        <AssociationConnector Association="DDA_SITModel.FK_GroupPermissions_Groups" />
+        <AssociationConnector Association="DDA_SITModel.FK_GroupPermissions_Permissions" />
+        <AssociationConnector Association="DDA_SITModel.FK_UserGroups_Groups" />
+        <AssociationConnector Association="DDA_SITModel.FK_Lookups_Lookups_ParentId" />
+        <AssociationConnector Association="DDA_SITModel.FK_UserGroups_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

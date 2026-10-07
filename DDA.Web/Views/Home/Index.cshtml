@@ -1,0 +1,56 @@
+﻿@using Kendo.Mvc.UI;
+@using Kendo.Mvc.Extensions;
+@{
+    ViewBag.Title = "";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Search").on('click', function () {
+
+        });
+        $("#ClearSearch").on('click', function () {
+            $('#CategoryId').val("");
+            $("#StatusId").val("");
+        });
+    });
+
+    // function dataReadJsFunction(page, pageSize, readUrl) {
+    //     var token = $('input[name="__RequestVerificationToken"]').val();
+    //     return {
+    //         categoryId: $('#CategoryId').val(),
+    //         statusId: $('#StatusId').val(),
+    //         page: page,
+    //         pageSize: pageSize
+    //     };
+    // }
+
+
+</script>
+
+@Html.AntiForgeryToken()
+
+
+<div class="grid-filter bg-grey4 rounded p-4 mb-4">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label class="d-inline-flex align-self-center mr-2">Category</label>
+            <select class="form-control"></select>
+        </div>
+        <div class="form-group col-md-4 mb-0">
+            <label class="d-inline-flex align-self-center mr-2">Status</label>
+            <select class="form-control"></select>
+        </div>
+        <div class="form-group col-md-auto mb-0">
+            <input type="button" id="Search" value="Search" class="btn btn-primary" />
+            <input type="button" id="ClearSearch" value="Clear" class="btn btn-secondary" />
+        </div>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-12">
+        @*@{ Html.RenderPartial("_KendoDynamicGrid");}*@
+    </div>
+</div>

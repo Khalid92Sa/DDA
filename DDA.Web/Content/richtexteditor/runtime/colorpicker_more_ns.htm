@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Page-Enter" content="blendTrans(Duration=0.1)" /><meta http-equiv="Page-Exit" content="blendTrans(Duration=0.1)" /><style>                body, input, textarea, button, select, fieldset, table {
+                        color: windowtext;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 12px;
+                }
+
+                table, textarea {
+                        text-align: left;
+                }
+
+                button {
+                        padding-top: 1px;
+                        height: 22px;
+                }
+
+                .formbutton {
+                        cursor: pointer;
+                        padding: 1px 10px;
+                }
+
+                #uploader input {
+                        cursor: pointer;
+                        padding: 1px 10px;
+                        height: 21px;
+                        vertical-align: top;
+                }
+
+                #uploader {
+                        padding: 10px 0 10px 30px;
+                        width: 100px;
+                }
+
+                fieldset {
+                        border: 1px solid #dddddd;
+                        padding: 2px;
+                }
+
+                .boxBg {
+                        background-color: #dddddd;
+                }
+
+                .boxBorder {
+                        border: 1px solid #dddddd;
+                }
+
+                .normal {
+                        color: windowtext;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                }
+
+                .sortable {
+                        color: windowtext;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                }
+
+                body {
+                        overflow: hidden;
+                        margin: 0px;
+                        padding: 0px;
+                        height: 100%;
+                }
+
+                .buttons a {
+                        width: 100px;
+                        margin: 0 7px 3px 0;
+                        text-decoration: none;
+                        background-color: #f5f5f5;
+                        background: url(images/formbg.gif) repeat-x left top;
+                        border-top: solid 1px #cccccc;
+                        border-left: solid 1px #cccccc;
+                        border-right: solid 1px #aaaaaa;
+                        border-bottom: solid 1px #aaaaaa;
+                        padding: 4px 12px 5px 5px;
+                        display: block;
+                        cursor: pointer;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                        line-height: 120%;
+                        color: #333;
+                        outline: none;
+                        font-weight: normal;
+                }
+
+                        .buttons a img {
+                                margin: 0 3px -3px 0 !important;
+                                width: 16px;
+                                height: 16px;
+                                padding: 0 !important;
+                                border: none !important;
+                                display: inline !important;
+                        }
+
+                        .buttons a:hover {
+                                background-color: #C0DDFC;
+                                background: url(images/formbg2.gif) repeat-x left top;
+                                border: 1px solid #3388ff;
+                                color: #333;
+                        }
+
+                        .buttons a.current {
+                                background-color: #C0DDFC;
+                                background: url(images/formbg2.gif) repeat-x left top;
+                                border: 1px solid #3388ff;
+                                color: #333;
+                        }
+
+                                .buttons a.current:hover {
+                                        background: url(images/formbg.gif) repeat-x left top;
+                                        border-top: solid 1px #cccccc;
+                                        border-left: solid 1px #cccccc;
+                                        border-right: solid 1px #aaaaaa;
+                                        border-bottom: solid 1px #aaaaaa;
+                                }
+
+                #div_demo {
+                        position: static !important;
+                        width: 100% !important;
+                        height: 100% !important;
+                }
+
+                #outer {
+                        width: 300px;
+                        overflow: auto;
+                        height: 150px;
+                        margin-top: 7px;
+                        background-color: #ffffff;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                        border: #dddddd 1px solid;
+                }
+
+                .inputbuttoncancel, .inputbuttoninsert {
+                        width: 80px;
+                        padding-top: 2px;
+                }
+
+                .dialogButton {
+                        border: 1px solid #f5f5f4;
+                        padding: 1px;
+                }
+
+                .editimgDisabled {
+                        /*filter:gray alpha(opacity=25);opacity: .25; -moz-opacity: .25;*/
+                }
+
+                .filelistHeadCol A {
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                        /*      cursor: default; */
+                        color: windowtext;
+                }
+
+                a.filelistHeadCol:visited, a.filelistHeadCol:link /* Font used for links in the navigation menu */ {
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                        color: #ffffff;
+                        text-decoration: none;
+                }
+
+                a.filelistHeadCol:Hover /* Font used for hovering over a link in the navigation menu */ {
+                        color: #FF3300;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                }
+
+                #container {
+                        padding: 10px;
+                        margin: 0;
+                        text-align: center;
+                        background: #eeeeee;
+                }
+
+                #container-bottom {
+                        clear: both;
+                        text-align: right;
+                        padding-right: 30px;
+                        margin-right: 30px;
+                        background: #eeeeee;
+                        margin-top: 5px;
+                }
+
+                .tab-pane-control.tab-pane {
+                        position: relative;
+                        width: 100%;
+                }
+
+                .tab-pane-control.tab-pane {
+                        position: relative;
+                        width: 100%;
+                }
+
+                .tab-pane-control .tab-row .tab {
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                        font-size: 11px;
+                        display: inline;
+                        margin: 1px -2px 1px 2px;
+                        float: left;
+                        padding: 2px 5px 3px 5px;
+                        background: #ECECEC url(images/formbn.gif) repeat-x;
+                        border: 1px solid;
+                        border-color: #898C95;
+                        border-bottom: 0;
+                        z-index: 1;
+                        position: relative;
+                        top: 0;
+                        cursor: pointer;
+                }
+
+                        .tab-pane-control .tab-row .tab.selected {
+                                border-bottom: 0;
+                                z-index: 3;
+                                padding: 2px 6px 5px 7px;
+                                margin: 1px -3px -2px 0px;
+                                top: -2px;
+                                background: #f5f5f5;
+                                cursor: pointer;
+                        }
+
+                        .tab-pane-control .tab-row .tab a {
+                                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                                font-size: 11px;
+                                font-weight: normal;
+                                color: black;
+                                text-decoration: none;
+                                outline: none;
+                        }
+
+                .tab-pane-control .tab-row .hover a {
+                        color: blue;
+                }
+
+                .tab-pane-control .tab-page {
+                        clear: both;
+                        border: 1px solid;
+                        border-color: #898C95;
+                        background: #f5f5f5;
+                        z-index: 2;
+                        position: relative;
+                        top: -2px;
+                        color: black;
+                        font: Message-Box;
+                        padding: 5px;
+                }
+
+                .tab-pane-control .tab-row {
+                        z-index: 1;
+                        white-space: nowrap;
+                }
+
+                .tab-pane-control .tab-row {
+                        z-index: 1;
+                        white-space: nowrap;
+                }
+
+                #FoldersAndFiles {
+                        table-layout: fixed;
+                }
+
+                        #FoldersAndFiles td {
+                                text-align: left;
+                                vertical-align: middle;
+                        }
+
+                .cursor {
+                        cursor: pointer;
+                }
+
+                div.progress-container {
+                        background-color: green;
+                        height: 5px;
+                        width: 50px;
+                        font-size: 5px;
+                        margin: 2px 5px 2px 6px;
+                }
+
+                        div.progress-container div {
+                                background-color: red;
+                                height: 5px;
+                                font-size: 5px
+                        }
+
+                #uploadinfo {
+                        margin: 0;
+                        padding: 0 0 0 20px;
+                }
+
+
+                /*
+-----------------------------------------------------
+Author: Lewis E. Moten III
+Date: May, 16, 2004
+Homepage: http://www.lewismoten.com
+Email: lewis@moten.com
+-----------------------------------------------------
+*/
+
+                /*
+filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+*/
+
+                #pnlRecent DIV {
+                        width: 10px;
+                        height: 10px;
+                        border: solid 1px black;
+                        background-color: ButtonFace;
+                }
+
+                #pnlRecentBorder DIV {
+                        width: 12px;
+                        height: 12px;
+                        border-left: 1px solid ThreeDShadow;
+                        border-top: 1px solid ThreeDShadow;
+                        border-right: 1px solid ThreeDHighlight;
+                        border-bottom: 1px solid ThreeDHighlight;
+                        background-color: ButtonFace;
+                }
+
+                #pnlRecentBorder {
+                        top: 222px;
+                        left: 316px;
+                        width: 160px;
+                        height: 70px;
+                }
+
+                #pnlRecent {
+                        top: 223px;
+                        left: 317px;
+                        width: 160px;
+                        height: 70px;
+                }
+
+                #lblRecent {
+                        top: 204px;
+                        left: 317px;
+                        width: 80px;
+                        height: 16px;
+                }
+
+                #pnlRecent1 {
+                        top: 0px;
+                        left: 0px;
+                }
+
+                #pnlRecent2 {
+                        top: 0px;
+                        left: 20px;
+                }
+
+                #pnlRecent3 {
+                        top: 0px;
+                        left: 40px;
+                }
+
+                #pnlRecent4 {
+                        top: 0px;
+                        left: 60px;
+                }
+
+                #pnlRecent5 {
+                        top: 0px;
+                        left: 80px;
+                }
+
+                #pnlRecent6 {
+                        top: 0px;
+                        left: 100px;
+                }
+
+                #pnlRecent7 {
+                        top: 0px;
+                        left: 120px;
+                }
+
+                #pnlRecent8 {
+                        top: 0px;
+                        left: 140px;
+                }
+
+                #pnlRecent9 {
+                        top: 18px;
+                        left: 0px;
+                }
+
+                #pnlRecent10 {
+                        top: 18px;
+                        left: 20px;
+                }
+
+                #pnlRecent11 {
+                        top: 18px;
+                        left: 40px;
+                }
+
+                #pnlRecent12 {
+                        top: 18px;
+                        left: 60px;
+                }
+
+                #pnlRecent13 {
+                        top: 18px;
+                        left: 80px;
+                }
+
+                #pnlRecent14 {
+                        top: 18px;
+                        left: 100px;
+                }
+
+                #pnlRecent15 {
+                        top: 18px;
+                        left: 120px;
+                }
+
+                #pnlRecent16 {
+                        top: 18px;
+                        left: 140px;
+                }
+
+                #pnlRecent17 {
+                        top: 36px;
+                        left: 0px;
+                }
+
+                #pnlRecent18 {
+                        top: 36px;
+                        left: 20px;
+                }
+
+                #pnlRecent19 {
+                        top: 36px;
+                        left: 40px;
+                }
+
+                #pnlRecent20 {
+                        top: 36px;
+                        left: 60px;
+                }
+
+                #pnlRecent21 {
+                        top: 36px;
+                        left: 80px;
+                }
+
+                #pnlRecent22 {
+                        top: 36px;
+                        left: 100px;
+                }
+
+                #pnlRecent23 {
+                        top: 36px;
+                        left: 120px;
+                }
+
+                #pnlRecent24 {
+                        top: 36px;
+                        left: 140px;
+                }
+
+                #pnlRecent25 {
+                        top: 54px;
+                        left: 0px;
+                }
+
+                #pnlRecent26 {
+                        top: 54px;
+                        left: 20px;
+                }
+
+                #pnlRecent27 {
+                        top: 54px;
+                        left: 40px;
+                }
+
+                #pnlRecent28 {
+                        top: 54px;
+                        left: 60px;
+                }
+
+                #pnlRecent29 {
+                        top: 54px;
+                        left: 80px;
+                }
+
+                #pnlRecent30 {
+                        top: 54px;
+                        left: 100px;
+                }
+
+                #pnlRecent31 {
+                        top: 54px;
+                        left: 120px;
+                }
+
+                #pnlRecent32 {
+                        top: 54px;
+                        left: 140px;
+                }
+
+                #pnlRecentBorder1 {
+                        top: 0px;
+                        left: 0px;
+                }
+
+                #pnlRecentBorder2 {
+                        top: 0px;
+                        left: 20px;
+                }
+
+                #pnlRecentBorder3 {
+                        top: 0px;
+                        left: 40px;
+                }
+
+                #pnlRecentBorder4 {
+                        top: 0px;
+                        left: 60px;
+                }
+
+                #pnlRecentBorder5 {
+                        top: 0px;
+                        left: 80px;
+                }
+
+                #pnlRecentBorder6 {
+                        top: 0px;
+                        left: 100px;
+                }
+
+                #pnlRecentBorder7 {
+                        top: 0px;
+                        left: 120px;
+                }
+
+                #pnlRecentBorder8 {
+                        top: 0px;
+                        left: 140px;
+                }
+
+                #pnlRecentBorder9 {
+                        top: 18px;
+                        left: 0px;
+                }
+
+                #pnlRecentBorder10 {
+                        top: 18px;
+                        left: 20px;
+                }
+
+                #pnlRecentBorder11 {
+                        top: 18px;
+                        left: 40px;
+                }
+
+                #pnlRecentBorder12 {
+                        top: 18px;
+                        left: 60px;
+                }
+
+                #pnlRecentBorder13 {
+                        top: 18px;
+                        left: 80px;
+                }
+
+                #pnlRecentBorder14 {
+                        top: 18px;
+                        left: 100px;
+                }
+
+                #pnlRecentBorder15 {
+                        top: 18px;
+                        left: 120px;
+                }
+
+                #pnlRecentBorder16 {
+                        top: 18px;
+                        left: 140px;
+                }
+
+                #pnlRecentBorder17 {
+                        top: 36px;
+                        left: 0px;
+                }
+
+                #pnlRecentBorder18 {
+                        top: 36px;
+                        left: 20px;
+                }
+
+                #pnlRecentBorder19 {
+                        top: 36px;
+                        left: 40px;
+                }
+
+                #pnlRecentBorder20 {
+                        top: 36px;
+                        left: 60px;
+                }
+
+                #pnlRecentBorder21 {
+                        top: 36px;
+                        left: 80px;
+                }
+
+                #pnlRecentBorder22 {
+                        top: 36px;
+                        left: 100px;
+                }
+
+                #pnlRecentBorder23 {
+                        top: 36px;
+                        left: 120px;
+                }
+
+                #pnlRecentBorder24 {
+                        top: 36px;
+                        left: 140px;
+                }
+
+                #pnlRecentBorder25 {
+                        top: 54px;
+                        left: 0px;
+                }
+
+                #pnlRecentBorder26 {
+                        top: 54px;
+                        left: 20px;
+                }
+
+                #pnlRecentBorder27 {
+                        top: 54px;
+                        left: 40px;
+                }
+
+                #pnlRecentBorder28 {
+                        top: 54px;
+                        left: 60px;
+                }
+
+                #pnlRecentBorder29 {
+                        top: 54px;
+                        left: 80px;
+                }
+
+                #pnlRecentBorder30 {
+                        top: 54px;
+                        left: 100px;
+                }
+
+                #pnlRecentBorder31 {
+                        top: 54px;
+                        left: 120px;
+                }
+
+                #pnlRecentBorder32 {
+                        top: 54px;
+                        left: 140px;
+                }
+
+                #pnlVerticalRgb_Start {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        background-color: white;
+                        z-index: 3;
+                }
+
+                #pnlVerticalRgb_End {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        background-color: cyan;
+                        z-index: 4;
+                        FILTER: Alpha(Opacity=0, FinishOpacity=100, Style=1, startX=0, finishX=0, startY=0, finishY=100);
+                }
+
+                #pnlGradientRgb_Base {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        z-index: 3;
+                        background-image: url(images/cpns_gradients.png);
+                }
+
+                #pnlGradientRgb_Overlay1 {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        z-index: 5;
+                        background-color: White;
+                        FILTER: Alpha(Opacity=0, FinishOpacity=100, Style=0, startX=0, finishX=0, startY=0, finishY=100);
+                }
+
+                #pnlGradientRgb_Overlay2 {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        z-index: 6;
+                        background-color: Black;
+                        FILTER: Alpha(Opacity=0, FinishOpacity=100, Style=1, startX=0, finishX=0, startY=0, finishY=100);
+                }
+
+                #pnlGradientRgb_Invert {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        z-index: 4;
+                        background-image: url(images/cpns_gradients.png);
+                        filter: flipH() flipV() invert() Alpha(Opacity=50);
+                }
+
+                #pnlVerticalHsbBrightness_Black {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        background-color: Black;
+                        FILTER: Alpha(Opacity=100, FinishOpacity=0, Style=1, startY=100, finishY=0, startX=0, finishX=0);
+                        z-index: 4;
+                }
+
+                #pnlVerticalHsbBrightness_Hue {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        background-color: 0006FF;
+                        z-index: 3;
+                }
+                /*
+=====================================================
+*/
+                #pnlVerticalHsbSaturation_White {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        background-color: White;
+                        FILTER: Alpha(Opacity=100, FinishOpacity=0, Style=1, startY=100, finishY=0, startX=0, finishX=0);
+                        z-index: 4;
+                }
+
+                #pnlVerticalHsbSaturation_Hue {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        background-color: 0006FF;
+                        z-index: 3;
+                }
+                /*
+--------------------------------------------
+Buttons
+--------------------------------------------
+*/
+                #btnOK {
+                        top: 30px;
+                        left: 390px;
+                        border: 2px bevel;
+                        width: 81px;
+                        height: 20px;
+                }
+
+                #btnCancel {
+                        top: 58px;
+                        left: 390px;
+                        color: ButtonText;
+                        border: 2px bevel;
+                        width: 81px;
+                        height: 20px;
+                }
+
+                #btnAbout {
+                        top: 79px;
+                        left: 390px;
+                        color: ButtonText;
+                        border: 2px bevel;
+                        width: 81px;
+                        height: 20px;
+                }
+
+                #btnWebSafeColor {
+                        border-style: none;
+                        border-width: 0px;
+                        background-image: url(images/cpns_WebSafe.gif);
+                        background-repeat: no-repeat;
+                        width: 11px;
+                        height: 12px;
+                        left: 347px;
+                        top: 11px;
+
+                        display:none;
+                }
+                /*
+--------------------------------------------
+Basic Controls
+--------------------------------------------
+*/
+                #lblSelectColorMessage {
+                        top: 10px;
+                        left: 10px;
+                        display:none;
+                }
+
+                #pnlOldColor {
+                        top: 65px;
+                        left: 317px;
+                        border-left: 1px solid black;
+                        border-bottom: 1px solid black;
+                        border-right: 1px solid black;
+                        background-color: 00013A;
+                        width: 60px;
+                        height: 34px;
+                        z-index: 2;
+                }
+
+                #pnlOldColorBorder {
+                        top: 65px;
+                        left: 316px;
+                        border-left: 1px solid ThreeDShadow;
+                        border-bottom: 1px solid ThreeDHighlight;
+                        border-right: 1px solid ThreeDHighlight;
+                        width: 62px;
+                        height: 35px;
+                        z-index: 1;
+                }
+
+                #pnlNewColor {
+                        background-color: #2729AD;
+                        top: 31px;
+                        left: 317px;
+                        border-left: 1px solid black;
+                        border-top: 1px solid black;
+                        border-right: 1px solid black;
+                        width: 60px;
+                        height: 34px;
+                        z-index: 2;
+                }
+
+                #pnlNewColorBorder {
+                        top: 30px;
+                        left: 316px;
+                        border-left: 1px solid ThreeDShadow;
+                        border-top: 1px solid ThreeDShadow;
+                        border-right: 1px solid ThreeDHighlight;
+                        width: 62px;
+                        height: 35px;
+                        z-index: 1;
+                }
+
+                #pnlWebSafeColor {
+                        top: 11px;
+                        left: 363px;
+                        width: 12px;
+                        height: 12px;
+                        border: solid 1px black;
+                        background-color: #333399;
+                        z-index: 2;
+
+                        display:none;
+                }
+
+                #pnlWebSafeColorBorder {
+                        top: 10px;
+                        left: 362px;
+                        width: 14px;
+                        height: 14px;
+                        border-left: 1px solid ThreeDShadow;
+                        border-top: 1px solid ThreeDShadow;
+                        border-right: 1px solid ThreeDHighlight;
+                        border-bottom: 1px solid ThreeDHighlight;
+                        z-index: 1;
+                        display: none;
+                }
+
+                #pnlVerticalPosition {
+                        width: 35px;
+                        height: 11px;
+                        background-image: url(images/cpns_VerticalPosition.gif);
+                        left: 274px;
+                        top: 113px;
+                }
+
+                #pnlGradientPosition {
+                        width: 256px;
+                        height: 256px;
+                        background-image: url(images/cpns_GradientPositionLight.gif);
+                        background-repeat: no-repeat;
+                        left: 12px;
+                        top: 32px;
+                        z-index: 98;
+                }
+                /*
+--------------------------------------------
+Gradient
+--------------------------------------------
+*/
+                #pnlGradient_Top {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        cursor: url(images/cpns_Color.cur);
+                        z-index: 99;
+                }
+
+                .GradientNormal {
+                }
+
+                .GradientFullScreen {
+                        top: 0px !important;
+                        left: 0px !important;
+                        height: 100% !important;
+                        width: 100% !important;
+                        z-index: 100;
+                        cursor: url(images/cpns_Color.cur) !important;
+                }
+
+                #imgGradient {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        z-index: 4;
+                        position: absolute;
+                }
+
+                #pnlGradient_Background2 {
+                        top: 31px;
+                        left: 11px;
+                        height: 256px;
+                        width: 256px;
+                        z-index: 2;
+                        border: solid 1px black;
+                }
+
+                #pnlGradient_Background1 {
+                        top: 30px;
+                        left: 10px;
+                        height: 258px;
+                        width: 258px;
+                        z-index: 1;
+                        border: solid 1px;
+                        border-top-color: ThreeDShadow;
+                        border-left-color: ThreeDShadow;
+                        border-bottom-color: ThreeDHighlight;
+                        border-right-color: ThreeDHighlight;
+                }
+                /*
+--------------------------------------------
+Vertical Bar
+--------------------------------------------
+*/
+                #pnlVertical_Top {
+                        left: 272px;
+                        width: 39px;
+                        z-index: 98;
+                        top: 0px;
+                        height: 310px;
+                }
+                /*
+        top:32px;
+        height: 256px;
+*/
+
+                #pnlVertical_Background2 {
+                        top: 31px;
+                        left: 281px;
+                        height: 256px;
+                        width: 19px;
+                        z-index: 2;
+                        border: solid 1px black;
+                }
+
+                #pnlVertical_Background1 {
+                        top: 30px;
+                        left: 280px;
+                        height: 256px;
+                        width: 21px;
+                        z-index: 1;
+                        border: solid 1px;
+                        border-top-color: ThreeDShadow;
+                        border-left-color: ThreeDShadow;
+                        border-bottom-color: ThreeDHighlight;
+                        border-right-color: ThreeDHighlight;
+                }
+                /*
+--------------------------------------------------------
+Color Mode: Hue / Saturation / Brightness (HSB)
+--------------------------------------------------------
+*/
+                #pnlVerticalHsbHue_Background {
+                        top: 32px;
+                        left: 282px;
+                        height: 256px;
+                        width: 19px;
+                        z-index: 3;
+                        background-image: url(images/cpns_hue2.png);
+                }
+
+                #pnlGradientHsbHue_Black {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        background-color: Black;
+                        FILTER: Alpha(Opacity=100, FinishOpacity=0, Style=1, startY=100, finishY=0, startX=0, finishX=0);
+                        z-index: 5;
+                }
+
+                #pnlGradientHsbHue_White {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        background-color: White;
+                        FILTER: Alpha(Opacity=100, FinishOpacity=0, Style=1, startX=0, finishX=100, startY=0, finishY=0);
+                        z-index: 4;
+                }
+
+                #pnlGradientHsbHue_Hue {
+                        top: 32px;
+                        left: 12px;
+                        height: 256px;
+                        width: 256px;
+                        background-color: 0006FF;
+                        z-index: 3;
+                }
+
+                #pnlHSB {
+                        top: 115px;
+                        left: 317px;
+                        width: 80px;
+                        height: 75px;
+                }
+
+                #pnlHSB_Hue {
+                        top: 0px;
+                        width: 80px;
+                        height: 22px;
+                }
+
+                #pnlHSB_Saturation {
+                        top: 25px;
+                        width: 80px;
+                        height: 22px;
+                }
+
+                #pnlHSB_Brightness {
+                        top: 50px;
+                        width: 80px;
+                        height: 22px;
+                }
+
+                #rdoHSB_Hue {
+                        background-color: ButtonFace;
+                        color: ButtonText;
+                        cursor: default;
+                        top: 2px;
+                        left: -3px;
+                        width: 12px;
+                        height: 12px;
+                }
+
+                #lblHSB_Hue {
+                        top: 0px;
+                        left: 0px;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        height: 22px;
+                        width: 37px;
+                }
+
+                #txtHSB_Hue {
+                        top: 0px;
+                        left: 37px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 31px;
+                        height: 22px;
+                }
+
+                #lblUnitHSB_Hue {
+                        top: 4px;
+                        left: 70px;
+                        font-size: 10pt;
+                }
+
+                #rdoHSB_Saturation {
+                        background-color: ButtonFace;
+                        color: ButtonText;
+                        cursor: default;
+                        top: 2px;
+                        left: -3px;
+                        width: 12px;
+                        height: 12px;
+                }
+
+                #lblHSB_Saturation {
+                        top: 0px;
+                        left: 0px;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        height: 22px;
+                        width: 37px;
+                }
+
+                #txtHSB_Saturation {
+                        top: 0px;
+                        left: 37px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 31px;
+                        height: 22px;
+                }
+
+                #lblUnitHSB_Saturation {
+                        top: 4px;
+                        left: 70px;
+                }
+
+                #rdoHSB_Brightness {
+                        background-color: ButtonFace;
+                        color: ButtonText;
+                        cursor: default;
+                        top: 2px;
+                        left: -3px;
+                        width: 12px;
+                        height: 12px;
+                }
+
+                #lblHSB_Brightness {
+                        top: 0px;
+                        left: 0px;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        height: 22px;
+                        width: 37px;
+                }
+
+                #txtHSB_Brightness {
+                        top: 0px;
+                        left: 37px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 31px;
+                        height: 22px;
+                }
+
+                #lblUnitHSB_Brightness {
+                        top: 4px;
+                        left: 70px;
+                }
+                /*
+--------------------------------------------------------
+Color Mode: Red / Green / Blue (RGB a.k.a. additive)
+--------------------------------------------------------
+*/
+                #pnlRGB {
+                        top: 115px;
+                        left: 400px;
+                        width: 75px;
+                        height: 75px;
+                }
+
+                #pnlRGB_Red {
+                        top: 0px;
+                        left: 0px;
+                        width: 75px;
+                        height: 22px;
+                }
+
+                #pnlRGB_Green {
+                        top: 25px;
+                        left: 0px;
+                        width: 75px;
+                        height: 22px;
+                }
+
+                #pnlRGB_Blue {
+                        top: 50px;
+                        left: 0px;
+                        width: 75px;
+                        height: 22px;
+                }
+
+                #lblRGB_Red {
+                        top: 0px;
+                        left: 0px;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        height: 22px;
+                        width: 37px;
+                }
+
+                #txtRGB_Red {
+                        top: 0px;
+                        left: 37px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 31px;
+                        height: 22px;
+                }
+
+                #lblRGB_Green {
+                        top: 0px;
+                        left: 0px;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        height: 22px;
+                        width: 37px;
+                }
+
+                #txtRGB_Green {
+                        top: 0px;
+                        left: 37px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 31px;
+                        height: 22px;
+                }
+
+                #lblRGB_Blue {
+                        top: 0px;
+                        left: 0px;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        height: 22px;
+                        width: 37px;
+                }
+
+                #txtRGB_Blue {
+                        top: 0px;
+                        left: 37px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 31px;
+                        height: 22px;
+                }
+                /*
+--------------------------------------------------------
+Color Mode: Hex (Hex values of RGB a.k.a. HTML Color value)
+--------------------------------------------------------
+*/
+                #lblHex {
+                        top: 195px;
+                        left: 400px;
+                }
+
+                #txtHex {
+                        top: 195px;
+                        left: 412px;
+                        border-style: inset;
+                        border-width: 2px;
+                        width: 56px;
+                        height: 22px;
+                }
+
+
+
+
+                /*
+--------------------------------------------
+Elements
+--------------------------------------------
+*/
+
+                #colorpickerpanel INPUT {
+                        position: absolute;
+                        font-family: "Photoshop Large", Arial;
+                        font-size: 8pt;
+                        color: WindowText;
+                        background-color: Window;
+                        cursor: text;
+                        text-align: right;
+                }
+
+                #colorpickerpanel .Button {
+                        position: absolute;
+                        font-family: "Photoshop Large", Arial;
+                        font-size: 8pt;
+                        color: ButtonText;
+                        cursor: default;
+                        background-color: ButtonFace;
+                        text-align: center;
+                }
+
+                #colorpickerpanel DIV {
+                        position: absolute;
+                        font-family: "Photoshop Large", Arial;
+                        font-size: 8pt;
+                        color: ButtonText;
+                        cursor: default;
+                        overflow: hidden;
+                }
+
+                #colorpickerpanel IMG {
+                        position: absolute;
+                        cursor: default;
+                        overflow: hidden;
+                }
+
+        </style>
+<style type="text/css">                .colorcell {
+                        width: 16px;
+                        height: 17px;
+                        cursor: pointer;
+                }
+
+                .colordiv, .customdiv {
+                        border: solid 1px #808080;
+                        width: 16px;
+                        height: 17px;
+                        font-size: 1px;
+                }
+
+                #ajaxdiv {
+                        margin: 0;
+                        text-align: center;
+                }
+        </style><title>CustomColor</title></head><body><div id="ajaxdiv"><div id="colorpickerpanel" style="position: relative; text-align: left; height: 350px"><div id="pnlGradient_Top"></div><div id="pnlGradient_Background1"></div><div id="pnlGradient_Background2"></div><img id="imgGradient" /><div id="pnlGradientRgb_Overlay1"></div><div id="pnlGradientRgb_Overlay2"></div><img id="pnlVerticalHsbSaturation_Hue" /><div id="pnlVertical_Background2"></div><div id="pnlVertical_Background1"></div><div id="pnlVertical_Top"></div><div id="pnlGradientHsbHue_Hue"></div><div id="pnlVerticalHsbHue_Background"></div><div id="pnlOldColor"></div><div id="pnlOldColorBorder"></div><div id="pnlNewColor"></div><div id="pnlNewColorBorder"></div><div id="pnlWebSafeColor" title="Click to select web safe color"></div><div id="pnlWebSafeColorBorder"></div><div id="pnlVerticalPosition"></div><div id="pnlGradientPosition"></div><div id="lblSelectColorMessage">SelectColor:</div><div id="lblRecent">Recent:</div><div id="pnlRecentBorder"><div id="pnlRecentBorder1"></div><div id="pnlRecentBorder2"></div><div id="pnlRecentBorder3"></div><div id="pnlRecentBorder4"></div><div id="pnlRecentBorder5"></div><div id="pnlRecentBorder6"></div><div id="pnlRecentBorder7"></div><div id="pnlRecentBorder8"></div><div id="pnlRecentBorder9"></div><div id="pnlRecentBorder10"></div><div id="pnlRecentBorder11"></div><div id="pnlRecentBorder12"></div><div id="pnlRecentBorder13"></div><div id="pnlRecentBorder14"></div><div id="pnlRecentBorder15"></div><div id="pnlRecentBorder16"></div><div id="pnlRecentBorder17"></div><div id="pnlRecentBorder18"></div><div id="pnlRecentBorder19"></div><div id="pnlRecentBorder20"></div><div id="pnlRecentBorder21"></div><div id="pnlRecentBorder22"></div><div id="pnlRecentBorder23"></div><div id="pnlRecentBorder24"></div><div id="pnlRecentBorder25"></div><div id="pnlRecentBorder26"></div><div id="pnlRecentBorder27"></div><div id="pnlRecentBorder28"></div><div id="pnlRecentBorder29"></div><div id="pnlRecentBorder30"></div><div id="pnlRecentBorder31"></div><div id="pnlRecentBorder32"></div></div><div id="pnlRecent"><div id="pnlRecent1"></div><div id="pnlRecent2"></div><div id="pnlRecent3"></div><div id="pnlRecent4"></div><div id="pnlRecent5"></div><div id="pnlRecent6"></div><div id="pnlRecent7"></div><div id="pnlRecent8"></div><div id="pnlRecent9"></div><div id="pnlRecent10"></div><div id="pnlRecent11"></div><div id="pnlRecent12"></div><div id="pnlRecent13"></div><div id="pnlRecent14"></div><div id="pnlRecent15"></div><div id="pnlRecent16"></div><div id="pnlRecent17"></div><div id="pnlRecent18"></div><div id="pnlRecent19"></div><div id="pnlRecent20"></div><div id="pnlRecent21"></div><div id="pnlRecent22"></div><div id="pnlRecent23"></div><div id="pnlRecent24"></div><div id="pnlRecent25"></div><div id="pnlRecent26"></div><div id="pnlRecent27"></div><div id="pnlRecent28"></div><div id="pnlRecent29"></div><div id="pnlRecent30"></div><div id="pnlRecent31"></div><div id="pnlRecent32"></div></div><div id="lblHex">#</div><form id="frmColorPicker" name="frmColorPicker"><div id="pnlHSB"><div id="pnlHSB_Hue" title="Hue"><input type="radio" id="rdoHSB_Hue" name="ColorType" checked="checked"></input><div id="lblHSB_Hue">H:</div><input type="text" id="txtHSB_Hue"></input><div id="lblUnitHSB_Hue"></div></div><div id="pnlHSB_Saturation" title="Saturation"><input type="radio" id="rdoHSB_Saturation" name="ColorType"></input><div id="lblHSB_Saturation">S:</div><input type="text" id="txtHSB_Saturation"></input><div id="lblUnitHSB_Saturation">%</div></div><div id="pnlHSB_Brightness" title="Brightness"><input type="radio" id="rdoHSB_Brightness" name="ColorType"></input><div id="lblHSB_Brightness">B:</div><input type="text" id="txtHSB_Brightness"></input><div id="lblUnitHSB_Brightness">%</div></div></div><div id="pnlRGB"><div id="pnlRGB_Red" title="Red"><div id="lblRGB_Red">R:</div><input type="text" id="txtRGB_Red"></input></div><div id="pnlRGB_Green" title="Green"><div id="lblRGB_Green">G:</div><input type="text" id="txtRGB_Green"></input></div><div id="pnlRGB_Blue" title="Blue"><div id="lblRGB_Blue">B:</div><input type="text" id="txtRGB_Blue"></input></div></div><input type="text" id="txtHex" maxlength="6"></input><input id="btnWebSafeColor" type="button" title="Warning: not a web safe color" class="Button"></input><input id="btnOK" type="button" value="OK" class="Button"></input><input id="btnCancel" type="button" value="Cancel" class="Button"></input><input id="btnAbout" type="button" value="About" class="Button" style="display: none"></input></form></div></div> </body></html>

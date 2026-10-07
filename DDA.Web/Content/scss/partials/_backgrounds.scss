@@ -1,0 +1,17 @@
+$homeBanner:url('../images/Background.svg') #{"/*rtl:url('../images/Background-rtl.svg')*/"};
+
+@mixin BannerBackground {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover
+}
+
+.light-blue-bg {
+    background-image: url("../images/light-blue-bg.svg");
+    @include BannerBackground;
+}
+
+.user-dashboard-bg {
+    background-image: url("../images/user-dashboard-bg.svg");
+    @include BannerBackground;
+}

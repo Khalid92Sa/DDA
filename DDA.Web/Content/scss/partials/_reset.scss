@@ -1,0 +1,82 @@
+body{
+  font-family: $RegularFont;
+  font-size: .8rem;
+  height: 100vh;
+  direction: ltr #{"/*rtl:rtl*/"};
+}
+// Pagination
+.page-link, a{
+  color: $primaryColor;
+ 
+}
+
+.page-link:hover, a:hover{
+  color: $accentColor;
+  h5{
+    color: $accentColor;
+  }
+}
+
+
+.main-section{
+  background-image: url("../images/side-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index:1;
+}
+
+
+.inner-pages{
+  + .container{
+    padding-top: 5rem;
+  }
+}
+
+@media only screen and (max-width: 767px){
+.seperator{
+  display: block;
+}
+}
+
+.dropdown-menu{
+  left:auto;
+}
+
+@media only screen and (max-width: 767px){
+  .dropdown-menu{
+    right:0;
+  }
+}
+
+.login-container{
+  width: 330px;
+  margin: 0 auto;
+}
+
+.side-img-container {
+    position: fixed;
+    right: 0;
+    z-index:0;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ddd;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}

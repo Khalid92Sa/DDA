@@ -1,0 +1,212 @@
+
+table {
+    thead {
+        background-color: $lightPrimaryColor;
+        color: $blackColor;
+
+        th {
+            padding-top: .7rem;
+            padding-bottom: .7rem;
+        }
+
+        th:first-of-type {
+            border-radius: .25rem 0 0 0;
+        }
+
+        th:last-of-type {
+            border-radius: 0 .25rem 0 0;
+        }
+    }
+
+    th, td {
+        font-size: .8rem;
+    }
+}
+  .loans-types a{
+    cursor: pointer;
+    &:hover, &:active, &.active,&:focus {
+      text-decoration: none;
+    }
+    
+    img{
+      border: 2px solid #fff;
+    
+  } 
+  &.active{
+    img{
+      border-color: $primaryColor;
+    }
+    label{
+      color: $primaryColor;
+    }
+  } 
+  }
+
+
+  /* Kendo */
+.k-block, .k-header, .k-grid-header, .k-toolbar, .k-grouping-header, .k-pager-wrap, .k-button, .k-draghandle, .k-treemap-tile, html .km-pane-wrapper .k-header {
+    background-color: transparent !important;
+    border-color:transparent !important;
+}
+
+.k-grid .k-header .k-button, .k-scheduler .k-header .k-button, .k-scheduler .k-header li, .k-scheduler .k-header .k-link, .k-gantt > .k-header li, .k-gantt > .k-header .k-link, .k-gantt-toolbar .k-button, .km-pane-wrapper .k-header .k-button {
+    color: $primaryColor;
+    background-color: transparent;
+    border: 1px solid $primaryColor !important;
+    font-size: 12px;
+    padding: 6px 15px;
+    height: 35px;
+    border-radius: .25rem;
+    color: #FFCD00;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+    &:hover {
+        color: $blackColor;
+        border-color: $primaryColor !important;
+        background-color: $primaryColor !important;
+    }
+}
+
+.k-widget .k-button:active:hover, .k-widget .k-button.k-state-active:hover {
+    color: $blackColor;
+    border-color: $primaryColor;
+    background-color: $primaryColor;
+
+}
+.k-block, .k-widget, .k-input, .k-textbox, .k-group, .k-content, .k-header, .k-filter-row > th, .k-editable-area, .k-separator, .k-colorpicker .k-i-arrow-s, .k-textbox > input, .k-autocomplete, .k-dropdown-wrap, .k-toolbar, .k-group-footer td, .k-grid-footer, .k-footer-template td, .k-state-default, .k-state-default .k-select, .k-state-disabled, .k-grid-header, .k-grid-header-wrap, .k-grid-header-locked, .k-grid-footer-locked, .k-grid-content-locked, .k-grid td, .k-grid td.k-state-selected, .k-grid-footer-wrap, .k-pager-wrap, .k-pager-wrap .k-link, .k-pager-refresh, .k-grouping-header, .k-grouping-header .k-group-indicator, .k-panelbar > .k-item > .k-link, .k-panel > .k-item > .k-link, .k-panelbar .k-panel, .k-panelbar .k-content, .k-treemap-tile, .k-calendar th, .k-slider-track, .k-splitbar, .k-dropzone-active, .k-tiles, .k-toolbar, .k-tooltip, .k-button-group .k-tool, .k-upload-files {
+    border-color: transparent;
+}
+.k-grid-header .k-header .k-link, .k-grid-header .k-header, .k-grid-header .k-link, .k-grid-header .k-link:link, .k-pager-info, .k-scheduler-header, .k-scheduler-agendaview .k-scheduler-datecolumn {
+    color: $blackColor;
+    font-family:$BoldFont;
+}
+.k-grid thead tr:hover {
+    background-color: $lightPrimaryColor;
+}
+
+.k-grid tbody tr:hover {
+    background-color: #ebebeb;
+}
+
+.k-grid-header table, .k-grid-content table, .k-grid-footer table, .k-grid-content-locked > table {
+    table-layout: auto;
+}
+.k-grid-header th.k-header > .k-link {
+    /*padding:0;
+    margin:0;*/
+}
+
+.k-grid td, .k-grid-header th.k-header, .k-filter-row th {
+    padding: .6rem 1.2rem;
+}
+
+.k-grid-content {
+    white-space: normal;
+    border: 1px solid #fcf5cc;
+    border-radius: 0 0 .25rem .25rem;
+    border-top: 0;
+    overflow-y:auto;
+}
+
+.k-grid-header {
+    margin-bottom: 0;
+    padding-right:17px !important;
+}
+
+.k-grid-content tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+
+.k-grid-content tbody tr:hover {
+    background-color: rgba(0,0,0,.1);
+}
+
+.k-grid-header th.k-header, .k-filter-row th{
+    white-space:normal;
+}
+table {
+    .addProduct {
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        cursor: pointer;
+
+        .plus-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .close {
+            right: 5px;
+            top: 0;
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: $accentColor1;
+        }
+
+        img {
+            z-index: 1
+        }
+    }
+}
+
+.k-grid-header {
+    background-color: $lightPrimaryColor !important;
+
+    table thead {
+        background-color: transparent;
+
+        & tr:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+.k-grid td.k-state-selected, .k-grid tr.k-state-selected > td {
+    border-color: $accentColor1;
+}
+.k-grid tr:hover .k-state-selected, .k-grid tr.k-state-selected:hover td {
+    background-color: $accentColor1;
+}
+.k-scheduler-layout .k-state-selected, .k-scheduler .k-today.k-state-selected, .k-grid tr.k-state-selected, .k-grid td.k-state-selected, .k-grid td.k-state-selected.k-state-focused, .k-marquee-color, .k-gantt .k-treelist .k-state-selected, .k-gantt .k-treelist .k-state-selected td, .k-gantt .k-treelist .k-alt.k-state-selected, .k-gantt .k-treelist .k-alt.k-state-selected > td, .k-listview > .k-state-selected, .k-state-selected.k-line {
+    background-color: $accentColor1 !important;
+}
+.k-grid tr.k-state-selected, .k-grid td.k-state-selected, .k-listview > .k-state-selected, .k-state-selected .k-progress-status {
+    color: #000;
+}
+
+.k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button{
+    /*display:table-cell;*/
+}
+
+.k-grid-View, #CategoriesGrid_viewItem, #TransactionsGrid_viewItem, #SMEsGrid_viewItem, #RFPApplicationsGrid_viewItem {
+    background-color: $primaryColor !important;
+}
+
+.k-grid-Edit, #CategoriesGrid_editItem, #TransactionsGrid_editItem, #SMEsGrid_editItem, #RFPApplicationsGrid_editItem {
+    background-color: $accentColor !important;
+}
+
+.k-grid-Delete, #CategoriesGrid_deleteItem, #TransactionsGrid_deleteItem, #SMEsGrid_deleteItem {
+    background-color: #f7979f !important;
+}
+
+.k-grid-top{
+    margin-bottom:10px;
+    padding:0;
+}
+
+td[role="gridcell"]:last-of-type{
+    display:flex;
+    width:auto !important;
+}
+
+.k-grid-header th.k-header, .k-filter-row th {
+    border-color: #ddd !important;
+}

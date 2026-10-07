@@ -1,0 +1,106 @@
+// Users Grids
+
+.users {
+    h6{
+        a{
+            color: $blackColor;
+            text-decoration: none;
+        }
+    }
+}
+
+.loans-programs-cont{
+.card{
+    border:0;
+    -webkit-transition: -webkit-transform .6s;
+    transition: -webkit-transform .6s;
+    -o-transition: -o-transform .6s;
+    -moz-transition: transform .6s, -moz-transform .6s;
+    transition: transform .6s;
+    transition: transform .6s, -webkit-transform .6s, -moz-transform .6s, -o-transform .6s;
+    -webkit-box-shadow: 9px 7px 30px rgba(72, 73, 121, 0.15);
+    -moz-box-shadow: 9px 7px 30px rgba(72, 73, 121, 0.15);
+    box-shadow: 0 4px 5px rgba(72, 73, 121, 0.15);
+}
+.card:hover{
+    webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    transform: translateY(-20px);
+    -webkit-box-shadow: 9px 7px 30px rgba(72, 73, 121, 0.15);
+    -moz-box-shadow: 9px 7px 30px rgba(72, 73, 121, 0.15);
+    box-shadow: 9px 7px 30px rgba(72, 73, 121, 0.15);
+}
+
+    .card-body{
+        padding: 0;
+    }
+
+    a{
+        color: black;
+       
+    }
+    a:hover {
+        color: $primaryColor;
+      
+    }
+}
+
+.my-requests-cont{
+    .card-body{
+        padding: 0;
+    }
+
+    img{
+        border-radius: .25rem 0 0 .25rem;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .my-requests-cont{
+        img{
+            height: 150px !important;
+        }
+}
+    
+}
+
+
+.cover-container {
+    height: 120px;
+
+    img {
+        border-radius: .25rem .25rem 0 0;
+    }
+}
+
+.projects .cover-container{
+    width:100%;
+}
+
+.related-enterprises, #carousel-projects {
+    a:hover, a:focus, a:active {
+        text-decoration: none !important;
+    }
+}
+
+
+
+.logo-container {
+    width: 100px;
+    height: 100px;
+    top: 60px;
+    border-width: 2px;
+}
+
+.text-container {
+    min-height: 100px;
+    padding-top: 50px;
+}
+
+@media only screen and (max-width: 767px) {
+    .text-container {
+        min-height: 1px;
+    }
+}

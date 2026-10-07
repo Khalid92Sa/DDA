@@ -1,0 +1,78 @@
+@mixin Heading1{
+  font-family: $BoldFont;
+  font-size: 3.5rem;
+  line-height: 50px;
+}
+
+.font-weight-bold{
+  font-family: $BoldFont !important;
+  font-weight: normal!important;
+}
+
+label.font-weight-bold{
+  font-family: $BoldFont;
+  font-weight: normal!important;
+}
+
+@mixin SectionTitle {
+  font-family: $BoldFont;
+  font-size: 1.5rem;
+}
+
+@mixin Question {
+  font-family: $RegularFont;
+  font-size: 1rem;
+}
+
+@mixin SideQuestions {
+  font-family: $RegularFont;
+  font-size: .7rem;
+}
+
+@mixin Tags {
+  font-family: $RegularFont;
+  font-size: .8rem;
+  color: $primaryColor;
+  font-weight: normal;
+}
+
+@mixin Filters {
+  font-family: $RegularFont;
+  font-size: .8rem;
+  color: $greyColor;
+  font-weight: normal;
+}
+
+@mixin Status {
+  font-family: $RegularFont;
+  font-size: .7rem;
+  color: $greyColor;
+  font-weight: normal;
+}
+
+@mixin StatusInfo {
+  @include Status;
+  font-family: $BoldFont;
+  color: $blackColor;
+}
+
+@mixin PrimaryButtons {
+  font-family: $RegularFont;
+  font-size: .8rem;
+  color: $greyColor;
+}
+
+@mixin SeconderyButtons {
+  font-family: $RegularFont;
+  font-size: .8rem;
+  color: $greyColor;
+}
+
+.section-title{
+  @include SectionTitle;
+}
+
+.question{
+  @include Question;
+}
+

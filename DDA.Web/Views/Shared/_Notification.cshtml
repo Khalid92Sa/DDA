@@ -1,0 +1,119 @@
+﻿
+@using SSSFramework
+<style type="text/css">
+.bar-notification{display:none;left:0;position:fixed;top:0;width:100%;z-index:100000;}
+.bar-notification.success{background:none repeat scroll 0 0 #3CA558;border-bottom:3px solid #FFFFFF !important;color:#FFFFFF;margin:0 0 10px;}
+.bar-notification.error{background:none repeat scroll 0 0 #E65727;border-bottom:3px solid #FFFFFF !important;color:#FFFFFF;margin:0 0 10px;}
+.bar-notification .close{background:url(@Url.Content("~/Assets/images/ico-close-notification-bar.png")) no-repeat;width:20px;height:20px;float:right;margin:9px 9px 0px 0px;cursor:pointer;}
+.bar-notification p.content{padding:0px 10px;margin:10px 0px;}
+.bar-notification p.content a{text-decoration:underline;color:#FFFFFF;}
+.bar-notification p.content a:hover{text-decoration:none;color:#FFFFFF;}
+</style>
+
+<script type="text/javascript">
+
+    var barNotificationTimeout;
+    function displayBarNotification(message, messagetype, timeout) {
+        clearTimeout(barNotificationTimeout);
+
+        //types: success, error
+        var cssclass = 'success';
+        if (messagetype == 'success') {
+            cssclass = 'success';
+        }
+        else if (messagetype == 'error') {
+            cssclass = 'error';
+        }
+
+        //remove previous CSS classes and notifications
+        $('#bar-notification')
+            .removeClass('success')
+            .removeClass('error');
+
+        $('#bar-notification .content').remove();
+
+        //add new notifications
+        var htmlcode = '';
+        if ((typeof message) == 'string') {
+            htmlcode = '<p class="content" style="@(CultureHelper.IsArabic ? "margin-right: 60px;" : "margin-left: 60px;")">' + message + '</p>';
+        } else {
+            for (var i = 0; i < message.length; i++) {
+                htmlcode = htmlcode + '<p class="content">' + message[i] + '</p>';
+            }
+        }
+
+        $('#bar-notification').append(htmlcode)
+            .addClass(cssclass)
+            .fadeIn('slow')
+            .mouseenter(function () {
+                clearTimeout(barNotificationTimeout);
+            });
+
+        $('#bar-notification .close').unbind('click').click(function () {
+            $('#bar-notification').fadeOut('slow');
+        });
+
+        //timeout (if set)
+        if (timeout > 0) {
+            barNotificationTimeout = setTimeout(function () {
+                $('#bar-notification').fadeOut('slow');
+            }, timeout);
+        }
+    }
+
+    $(document).ready(function () {
+        $('#bar-notification').on("mouseleave", function () {
+            setTimeout(function () {
+                $('#bar-notification').fadeOut('slow');
+            }, barNotificationTimeout * 2);
+        });
+    });
+</script>
+
+@{
+    //success messages
+    var successMessages = new List<string>();
+    if (TempData[string.Format("sss.notifications.{0}", MessageNotificationType.Success)] != null)
+    {
+        successMessages.AddRange(TempData[string.Format("sss.notifications.{0}", MessageNotificationType.Success)] as IList<string>);
+    }
+    if (ViewData[string.Format("sss.notifications.{0}", MessageNotificationType.Success)] != null)
+    {
+        successMessages.AddRange(ViewData[string.Format("sss.notifications.{0}", MessageNotificationType.Success)] as IList<string>);
+    }
+
+
+    //error messages
+    var errorMessages = new List<string>();
+    if (TempData[string.Format("sss.notifications.{0}", MessageNotificationType.Error)] != null)
+    {
+        errorMessages.AddRange(TempData[string.Format("sss.notifications.{0}", MessageNotificationType.Error)] as IList<string>);
+    }
+    if (ViewData[string.Format("sss.notifications.{0}", MessageNotificationType.Error)] != null)
+    {
+        errorMessages.AddRange(ViewData[string.Format("sss.notifications.{0}", MessageNotificationType.Error)] as IList<string>);
+    }
+}
+@foreach (var message in successMessages)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            displayBarNotification('@Html.Raw(HttpUtility.JavaScriptStringEncode(message))', 'success', 3500);
+        });
+    </script>
+}
+@foreach (var message in errorMessages)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            displayBarNotification('@Html.Raw(HttpUtility.JavaScriptStringEncode(message))', 'error', 3500);
+        });
+    </script>
+}
+<div id="dialog-notifications-success" class="alert alert-success" title="@DDA.Resources.Resource.Common_Notification_Header_Success" style="display:none;">
+</div>
+<div id="dialog-notifications-error" class="alert alert-danger" title="@DDA.Resources.Resource.Common_Notification_Header_Error" style="display:none;">
+</div>
+<div id="bar-notification" class="bar-notification" style="direction: @(CultureHelper.IsArabic? "rtl":"ltr");">
+    <span class="close" title="@DDA.Resources.Resource.Common_Close">&nbsp;</span>
+</div>
